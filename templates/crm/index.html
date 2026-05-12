@@ -1,0 +1,127 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+
+{% block content %}
+  <div class="container-fluid py-4">
+
+    <div class="row mb-4">
+      <div class="col-12">
+        <h3 class="font-weight-bolder">Service station control panel</h3>
+        <p class="text-sm mb-0">Real-time operational analytics for car service</p>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+        <div class="card">
+          <div class="card-body p-3">
+            <div class="row">
+              <div class="col-8 text-start">
+                <p class="text-sm mb-0 text-capitalize font-weight-bold">Orders in process</p>
+                <h5 class="font-weight-bolder mb-0">
+                  {{ num_orders }}
+                  <span class="text-warning text-sm font-weight-bolder">⏳</span>
+                </h5>
+                <a href="{% url 'crm:order-list' %}" class="text-xs text-secondary mb-0">Details →</a>
+              </div>
+              <div class="col-4 text-end">
+                <div class="icon icon-shape bg-gradient-warning shadow text-center border-radius-md">
+                  <i class="fas fa-tools text-lg opacity-10" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+        <div class="card">
+          <div class="card-body p-3">
+            <div class="row">
+              <div class="col-8 text-start">
+                <p class="text-sm mb-0 text-capitalize font-weight-bold">Staff</p>
+                <h5 class="font-weight-bolder mb-0">
+                  {{ num_worker }}
+                </h5>
+                <span class="text-xs text-success font-weight-bold">Workers</span>
+              </div>
+              <div class="col-4 text-end">
+                <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+                  <i class="fas fa-user-check text-lg opacity-10" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+        <div class="card">
+          <div class="card-body p-3">
+            <div class="row">
+              <div class="col-8 text-start">
+                <p class="text-sm mb-0 text-capitalize font-weight-bold">Income (month)</p>
+                <h5 class="font-weight-bolder mb-0">
+                  {{ sum_month }} <small class="text-sm">₴</small>
+                </h5>
+                <p class="text-xs text-secondary mb-0">Current period</p>
+              </div>
+              <div class="col-4 text-end">
+                <div class="icon icon-shape bg-gradient-success shadow text-center border-radius-md">
+                  <i class="fas fa-hand-holding-usd text-lg opacity-10" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-3 col-sm-6">
+        <div class="card bg-gradient-dark">
+          <div class="card-body p-3">
+            <div class="row">
+              <div class="col-8 text-start">
+                <p class="text-sm mb-0 text-capitalize font-weight-bold text-white opacity-7">Total in the system</p>
+                <h5 class="font-weight-bolder mb-0 text-white">
+                  {{ sum_all }} <small class="text-sm">₴</small>
+                </h5>
+                <p class="text-xs text-white opacity-7 mb-0">For all time</p>
+              </div>
+              <div class="col-4 text-end">
+                <div class="icon icon-shape bg-white shadow text-center border-radius-md">
+                  <i class="fas fa-coins text-dark text-lg opacity-10" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-12">
+        <div class="card p-3 shadow-sm border-dashed">
+          <div class="d-flex justify-content-center align-items-center flex-wrap gap-3">
+            <span class="text-sm font-weight-bold">Quick addition:</span>
+            <a href="{% url 'crm:order-create' %}" class="btn bg-gradient-primary mb-0">
+              <i class="fas fa-plus me-2"></i> New order
+            </a>
+            <a href="{% url 'crm:client-create' %}" class="btn btn-outline-dark mb-0">
+              <i class="fas fa-user-plus me-2"></i> Client
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-12 text-center">
+        <p class="text-xs text-secondary font-weight-bold text-uppercase">
+          Session statistic: {{ num_visits }} visitor{{ num_visits|pluralize }}
+        </p>
+      </div>
+    </div>
+
+  </div>
+{% endblock content %}
