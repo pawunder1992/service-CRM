@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import index, OrderListView, OrderCreateView
+from .views import index, OrderListView, OrderCreateView, OrderUpdateView, OrderDetailView
 
 app_name = "crm"
 
@@ -12,4 +12,14 @@ urlpatterns = [
         name="order-list",
     ),
     path("orders/create/", OrderCreateView.as_view(), name="order-create"),
+path(
+        "orders/<int:pk>/update/",
+        OrderUpdateView.as_view(),
+        name="order-update",
+    ),
+path(
+        "orders/<int:pk>/",
+        OrderDetailView.as_view(),
+        name="order-detail",
+    ),
 ]

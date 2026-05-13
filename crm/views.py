@@ -90,3 +90,13 @@ class OrderCreateView(LoginRequiredMixin, generic.CreateView):
 class OrderDetailView(LoginRequiredMixin, generic.DetailView):
     model = Order
     template_name = "crm/order_detail.html"
+
+
+class OrderUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Order
+    form_class = OrderForm
+    template_name = "crm/order_form.html"
+
+    def get_success_url(self):
+
+        return reverse_lazy("crm:order-detail", kwargs={"pk": self.object.pk})
