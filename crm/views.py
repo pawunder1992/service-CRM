@@ -1,11 +1,12 @@
 
 
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Count, Q
 from django.shortcuts import render
+from django.views import generic
 
-
-
+from .forms import OrderSearchForm
 from .models import Order, Client, Worker, ServiceCategory, Specialty
 
 
@@ -38,3 +39,35 @@ def index(request):
     }
 
     return render(request, "crm/index.html", context=context)
+
+class OrderListView(LoginRequiredMixin, generic.ListView):
+    model = Order
+    context_object_name = "order_list"
+    template_name = "crm/order_list.html"
+    paginate_by = 5
+
+    def get_context_data(self, *, object_list=..., **kwargs):
+        context = super().get_context_data(**kwargs)
+        license_plate = self.request.GET.get("license_plate", "")
+        context["search_form"] = OrderSearchForm(
+            initial={"license_plate": license_plate}
+        )
+        return context
+
+    def get_queryset(self):
+        queryset = Order.objects.select_related("client", "category").order_by(
+            "is_completed", "-date"
+        )
+        form = OrderSearchForm(self.request.GET)
+        if form.is_valid() and form.cleaned_data.get("license_plate"):
+            queryset = queryset.filter(
+                client__license_plate__icontains=form.cleaned_data["license_plate"]
+            )
+        status = self.request.GET.get("status")
+        if status == "completed":
+            queryset = queryset.filter(is_completed=True).order_by("-id")
+        elif status == "waiting":
+            queryset = queryset.filter(is_completed=False).order_by("-id")
+        elif status == "my_orders":
+            queryset = queryset.filter(performers__id=self.request.user.id).distinct()
+        return queryset
