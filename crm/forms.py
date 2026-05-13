@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 
-from crm.models import Worker, Order
+from crm.models import Worker, Order, Client
 
 
 class OrderSearchForm(forms.Form):
@@ -10,9 +10,7 @@ class OrderSearchForm(forms.Form):
         required=False,
         max_length=255,
         label="",
-        widget=forms.TextInput(
-            attrs={"placeholder": "search by license_plate"}
-        ),
+        widget=forms.TextInput(attrs={"placeholder": "search by license_plate"}),
     )
 
 
@@ -29,14 +27,13 @@ class OrderForm(forms.ModelForm):
         model = Order
         fields = "__all__"
 
+
 class ClientSearchForm(forms.Form):
     license_plate = forms.CharField(
         required=False,
         max_length=255,
         label="",
-        widget=forms.TextInput(
-            attrs={"placeholder": "search by license_plate"}
-        ),
+        widget=forms.TextInput(attrs={"placeholder": "search by license_plate"}),
     )
 
 
@@ -62,9 +59,7 @@ def validate_license_plate(license_plate):
     if len(license_plate) != 8:
         raise ValidationError("License plate should consist of 8 characters")
     elif not license_plate[:2].isupper() or not license_plate[:2].isalpha():
-        raise ValidationError(
-            "First 2 characters should be uppercase letters"
-        )
+        raise ValidationError("First 2 characters should be uppercase letters")
     elif not license_plate[-2:].isupper() or not license_plate[-2:].isalpha():
         raise ValidationError("Last 2 characters should be uppercase letters")
     elif not license_plate[2:6].isdigit():
@@ -79,7 +74,6 @@ def validate_phone_number(phone_number):
             "Enter the number in the format 096 123 45 67 (10 digits)"
         )
     return phone_number
-
 
 
 class WorkerSearchForm(forms.Form):
@@ -110,7 +104,6 @@ class ServiceCategorySearchForm(forms.Form):
         label="",
         widget=forms.TextInput(attrs={"placeholder": "search by category"}),
     )
-
 
 
 class SpecialtySearchForm(forms.Form):

@@ -8,8 +8,16 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from .forms import OrderSearchForm, OrderForm, ClientSearchForm, ClientCreationForm, WorkerSearchForm, \
-    WorkerCreationForm, ServiceCategorySearchForm, SpecialtySearchForm
+from .forms import (
+    OrderSearchForm,
+    OrderForm,
+    ClientSearchForm,
+    ClientCreationForm,
+    WorkerSearchForm,
+    WorkerCreationForm,
+    ServiceCategorySearchForm,
+    SpecialtySearchForm,
+)
 from .models import Order, Client, Worker, ServiceCategory, Specialty
 
 current_month = timezone.now().month
@@ -42,6 +50,7 @@ def index(request):
     }
 
     return render(request, "crm/index.html", context=context)
+
 
 class OrderListView(LoginRequiredMixin, generic.ListView):
     model = Order
@@ -88,6 +97,7 @@ class OrderCreateView(LoginRequiredMixin, generic.CreateView):
         if client_id:
             initial["client"] = client_id
         return initial
+
 
 class OrderDetailView(LoginRequiredMixin, generic.DetailView):
     model = Order
@@ -144,7 +154,6 @@ class ClientDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Client
     template_name = "crm/client_delete_confirm.html"
     success_url = reverse_lazy("crm:client-list")
-
 
 
 class ClientUpdateView(LoginRequiredMixin, generic.UpdateView):
@@ -205,7 +214,6 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
         return queryset
 
 
-
 class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
     model = Worker
     template_name = "crm/worker_detail.html"
@@ -263,7 +271,6 @@ class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
     form_class = WorkerCreationForm
 
 
-
 class WorkerUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Worker
     fields = ["username", "first_name", "last_name", "specialty", "is_active"]
@@ -306,13 +313,11 @@ class ServiceCategoryCreateView(LoginRequiredMixin, generic.CreateView):
     success_url = reverse_lazy("crm:service-category-list")
 
 
-
 class ServiceCategoryUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = ServiceCategory
     template_name = "crm/service_category_form.html"
     fields = "__all__"
     success_url = reverse_lazy("crm:service-category-list")
-
 
 
 class SpecialtyListView(LoginRequiredMixin, generic.ListView):

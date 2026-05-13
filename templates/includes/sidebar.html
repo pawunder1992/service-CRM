@@ -30,74 +30,74 @@
         </a>
       </li>
 
-{#      <li class="nav-item">#}
-{#        <a class="nav-link {% if 'client' in request.path %}active{% endif %}" href="{% url 'crm:client-list' %}">#}
-{#          <div#}
-{#              class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">#}
-{#            <i class="fas fa-users text-warning"></i>#}
-{#          </div>#}
-{#          <span class="nav-link-text ms-1">Clients</span>#}
-{#        </a>#}
-{#      </li>#}
-{##}
-{#      <li class="nav-item">#}
-{#        <a class="nav-link {% if 'worker' in request.path %}active{% endif %}" href="{% url 'crm:worker-list' %}">#}
-{#          <div#}
-{#              class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">#}
-{#            <i class="fas fa-user-tie text-danger"></i>#}
-{#          </div>#}
-{#          <span class="nav-link-text ms-1">Our workers</span>#}
-{#        </a>#}
-{#      </li>#}
-{##}
-{##}
-{#      <li class="nav-item">#}
-{#        <a class="nav-link {% if 'category' in request.path %}active{% endif %}"#}
-{#           href="{% url 'crm:service-category-list' %}">#}
-{#          <div#}
-{#              class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">#}
-{#            <i class="fas fa-list text-dark"></i>#}
-{#          </div>#}
-{#          <span class="nav-link-text ms-1">Repair categories</span>#}
-{#        </a>#}
-{#      </li>#}
-{##}
-{#      <li class="nav-item">#}
-{#        <a class="nav-link {% if 'specialty' in request.path %}active{% endif %}" href="{% url 'crm:specialty-list' %}">#}
-{#          <div#}
-{#              class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">#}
-{#            <i class="fas fa-star text-dark"></i>#}
-{#          </div>#}
-{#          <span class="nav-link-text ms-1">Specialities</span>#}
-{#        </a>#}
-{#      </li>#}
-{##}
-{##}
-{#      <li class="nav-item mt-3">#}
-{#        <hr class="horizontal dark">#}
-{#      </li>#}
-{#      <li class="nav-item">#}
-{#        {% if user.is_authenticated %}#}
-{#          <form action="{% url 'logout' %}" method="post" id="logout-form" style="display: none;">#}
-{#            {% csrf_token %}#}
-{#          </form>#}
-{#          <a class="nav-link" href="#"#}
-{#             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">#}
-{#            <div#}
-{#                class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">#}
-{#              <i class="fas fa-sign-out-alt text-secondary"></i>#}
-{#            </div>#}
-{#            <span class="nav-link-text ms-1">Logout</span>#}
-{#          </a>#}
-{#        {% else %}#}
-{#          <a class="nav-link" href="{% url 'login' %}">#}
-{#            <div#}
-{#                class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">#}
-{#              <i class="fas fa-sign-in-alt text-success"></i>#}
-{#            </div>#}
-{#            <span class="nav-link-text ms-1">Login</span>#}
-{#          </a>#}
-{#        {% endif %}#}
+      <li class="nav-item">
+        <a class="nav-link {% if 'client' in request.path %}active{% endif %}" href="{% url 'crm:client-list' %}">
+          <div
+              class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="fas fa-users text-warning"></i>
+          </div>
+          <span class="nav-link-text ms-1">Clients</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link {% if 'worker' in request.path %}active{% endif %}" href="{% url 'crm:worker-list' %}">
+          <div
+              class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="fas fa-user-tie text-danger"></i>
+          </div>
+          <span class="nav-link-text ms-1">Our workers</span>
+        </a>
+      </li>
+
+
+      <li class="nav-item">
+        <a class="nav-link {% if 'category' in request.path %}active{% endif %}"
+           href="{% url 'crm:service-category-list' %}">
+          <div
+              class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="fas fa-list text-dark"></i>
+          </div>
+          <span class="nav-link-text ms-1">Repair categories</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link {% if 'specialty' in request.path %}active{% endif %}" href="{% url 'crm:specialty-list' %}">
+          <div
+              class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="fas fa-star text-dark"></i>
+          </div>
+          <span class="nav-link-text ms-1">Specialities</span>
+        </a>
+      </li>
+
+
+      <li class="nav-item mt-3">
+        <hr class="horizontal dark">
+      </li>
+      <li class="nav-item">
+        {% if user.is_authenticated %}
+          <form action="{% url 'logout' %}" method="post" id="logout-form" style="display: none;">
+            {% csrf_token %}
+          </form>
+          <a class="nav-link" href="#"
+             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            <div
+                class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fas fa-sign-out-alt text-secondary"></i>
+            </div>
+            <span class="nav-link-text ms-1">Logout</span>
+          </a>
+        {% else %}
+          <a class="nav-link" href="{% url 'login' %}">
+            <div
+                class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fas fa-sign-in-alt text-success"></i>
+            </div>
+            <span class="nav-link-text ms-1">Login</span>
+          </a>
+        {% endif %}
       </li>
     </ul>
   </div>
