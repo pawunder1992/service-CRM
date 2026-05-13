@@ -78,3 +78,13 @@ def validate_phone_number(phone_number):
             "Enter the number in the format 096 123 45 67 (10 digits)"
         )
     return phone_number
+
+
+
+class WorkerSearchForm(forms.Form):
+    last_name = forms.CharField(
+        required=False,
+        max_length=255,
+        label="",
+        widget=forms.TextInput(attrs={"placeholder": "search by last_name"}),
+    )

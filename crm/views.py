@@ -7,7 +7,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from .forms import OrderSearchForm, OrderForm, ClientSearchForm, ClientCreationForm
+from .forms import OrderSearchForm, OrderForm, ClientSearchForm, ClientCreationForm, WorkerSearchForm
 from .models import Order, Client, Worker, ServiceCategory, Specialty
 
 current_month = timezone.now().month
@@ -174,3 +174,30 @@ class ClientCreateView(LoginRequiredMixin, generic.CreateView):
 
         self.request.session["last_client_id"] = self.object.id
         return response
+
+
+class WorkerListView(LoginRequiredMixin, generic.ListView):
+    model = Worker
+    context_object_name = "worker_list"
+    paginate_by = 5
+
+    def get_context_data(self, *, object_list=..., **kwargs):
+        context = super().get_context_data(**kwargs)
+        last_name = self.request.GET.get("last_name", "")
+
+        context["search_form"] = WorkerSearchForm(initial={"last_name": last_name})
+        return context
+
+    def get_queryset(self):
+        queryset = Worker.objects.all().order_by("-is_active")
+        form = WorkerSearchForm(self.request.GET)
+        if form.is_valid():
+            queryset = queryset.filter(
+                last_name__icontains=form.cleaned_data["last_name"]
+            )
+        status = self.request.GET.get("status")
+        if status == "active":
+            queryset = queryset.filter(is_active=True).order_by("-id")
+        elif status == "inactive":
+            queryset = queryset.filter(is_active=False).order_by("-id")
+        return queryset

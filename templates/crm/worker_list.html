@@ -1,0 +1,129 @@
+{% extends "layouts/base.html" %}
+{% load crispy_forms_filters %}
+{% load static %}
+
+{% block content %}
+  <div class="container-fluid py-4">
+    <div class="row">
+      <div class="col-12">
+        <div class="card mb-4">
+
+          <div class="card-header pb-0 d-flex justify-content-between align-items-center">
+            <h6>Worker list</h6>
+            {% if user.is_superuser %}
+              <a href="{% url 'crm:worker-create' %}" class="btn bg-gradient-primary btn-sm mb-0">
+                + add worker
+              </a>
+            {% endif %}
+          </div>
+
+          <div class="card-body px-0 pt-0 pb-2">
+
+            <div class="p-3 bg-gray-100 border-radius-lg mx-3 my-3">
+              <div class="row align-items-center">
+
+                <div class="col-md-6">
+                  <form method="get" action="" class="mb-0">
+                    <div class="input-group">
+                      <input type="text" name="last_name" class="form-control" placeholder="Last name..."
+                             value="{{ request.GET.last_name|default:'' }}">
+                      <button class="btn btn-dark mb-0" type="submit">Search</button>
+                    </div>
+                    {% if request.GET.status %}
+                      <input type="hidden" name="status" value="{{ request.GET.status }}">{% endif %}
+                  </form>
+                </div>
+
+                <div class="col-md-6 text-end">
+                  <div class="btn-group">
+                    <a href="?status=all{% if request.GET.last_name %}&last_name={{ request.GET.last_name }}{% endif %}"
+                       class="btn btn-sm {% if not request.GET.status or request.GET.status == 'all' %}btn-primary{% else %}btn-outline-primary{% endif %} mb-0">
+                      All
+                    </a>
+                    <a href="?status=active{% if request.GET.last_name %}&last_name={{ request.GET.last_name }}{% endif %}"
+                       class="btn btn-sm {% if request.GET.status == 'active' %}btn-primary{% else %}btn-outline-primary{% endif %} mb-0">
+                      At work
+                    </a>
+                    <a href="?status=inactive{% if request.GET.last_name %}&last_name={{ request.GET.last_name }}{% endif %}"
+                       class="btn btn-sm {% if request.GET.status == 'inactive' %}btn-primary{% else %}btn-outline-primary{% endif %} mb-0">
+                      Missing
+                    </a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="table-responsive p-0">
+              {% if worker_list %}
+                <table class="table align-items-center mb-0">
+                  <thead>
+                  <tr>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-start">Worker
+                    </th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-start">
+                      Specialty
+                    </th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Order
+                    </th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status
+                    </th>
+                    <th class="text-secondary opacity-7"></th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {% for worker in worker_list %}
+                    <tr>
+                      <td class="text-start">
+                        <div class="d-flex px-3 py-1">
+                          <div class="d-flex flex-column justify-content-center">
+                            <h6 class="mb-0 text-sm">
+                              {{ worker.first_name }} {{ worker.last_name }}
+                            </h6>
+                            <p class="text-xs text-secondary mb-0"><a href="{{ worker.get_absolute_url }}"
+                                                                      class="text-dark">@{{ worker.username }} </a>
+                              {% if user == worker %} (Me) {% endif %}</p>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="text-start">
+                        <p class="text-xs font-weight-bold mb-0">{{ worker.specialty|default:"-" }}</p>
+                      </td>
+                      <td class="align-middle text-center">
+                        <span
+                            class="text-secondary text-xs font-weight-bold">{{ worker.active_orders_count|default:"0" }}</span>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        {% if worker.is_active %}
+                          <span class="badge badge-sm bg-gradient-success">At work</span>
+                        {% else %}
+                          <span class="badge badge-sm bg-gradient-secondary">Missed</span>
+                        {% endif %}
+                      </td>
+                      <td class="align-middle px-4 text-end">
+                        {% if user.is_superuser %}
+                          <a href="{% url 'crm:worker-update' pk=worker.id %}"
+                             class="text-secondary font-weight-bold text-xs">Edit</a>
+                        {% endif %}
+                      </td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              {% else %}
+                <div class="text-center p-5 text-muted">No workers</div>
+              {% endif %}
+            </div>
+          </div>
+
+          {% if is_paginated %}
+            <div class="card-footer pt-0">
+              {% include "includes/pagination.html" %}
+            </div>
+          {% endif %}
+
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
