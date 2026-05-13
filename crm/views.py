@@ -7,7 +7,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from .forms import OrderSearchForm, OrderForm, ClientSearchForm
+from .forms import OrderSearchForm, OrderForm, ClientSearchForm, ClientCreationForm
 from .models import Order, Client, Worker, ServiceCategory, Specialty
 
 current_month = timezone.now().month
@@ -142,3 +142,35 @@ class ClientDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Client
     template_name = "crm/client_delete_confirm.html"
     success_url = reverse_lazy("crm:client-list")
+
+
+
+class ClientUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Client
+    form_class = ClientCreationForm
+    template_name = "crm/client_form.html"
+    success_url = reverse_lazy("crm:client-list")
+
+
+class ClientCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Client
+    form_class = ClientCreationForm
+
+    template_name = "crm/client_form.html"
+
+    def get_success_url(self):
+
+        next_page = self.request.GET.get("next")
+
+        if next_page == "order":
+
+            self.request.session["last_created_client_id"] = self.object.id
+            return reverse_lazy("crm:order-create")
+
+        return reverse_lazy("crm:client-list")
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+
+        self.request.session["last_client_id"] = self.object.id
+        return response

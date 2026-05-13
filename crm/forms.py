@@ -1,4 +1,5 @@
 from django import forms
+from django.core.exceptions import ValidationError
 
 from crm.models import Worker, Order
 
@@ -36,3 +37,44 @@ class ClientSearchForm(forms.Form):
             attrs={"placeholder": "search by license_plate"}
         ),
     )
+
+
+class ClientCreationForm(forms.ModelForm):
+    phone_number = forms.CharField(
+        widget=forms.TextInput(attrs={"placeholder": "0X XXX XX XX"})
+    )
+
+    class Meta:
+        model = Client
+        fields = "__all__"
+
+    def clean_license_plate(self):
+        return validate_license_plate(self.cleaned_data["license_plate"])
+
+    def clean_phone_number(self):
+        data = self.cleaned_data["phone_number"]
+        validate_phone_number(data)
+        return data
+
+
+def validate_license_plate(license_plate):
+    if len(license_plate) != 8:
+        raise ValidationError("License plate should consist of 8 characters")
+    elif not license_plate[:2].isupper() or not license_plate[:2].isalpha():
+        raise ValidationError(
+            "First 2 characters should be uppercase letters"
+        )
+    elif not license_plate[-2:].isupper() or not license_plate[-2:].isalpha():
+        raise ValidationError("Last 2 characters should be uppercase letters")
+    elif not license_plate[2:6].isdigit():
+        raise ValidationError("Middle 4 characters should be digits")
+    return license_plate
+
+
+def validate_phone_number(phone_number):
+    phone_number = phone_number.strip()
+    if len(phone_number) != 10 or not phone_number.isdigit():
+        raise ValidationError(
+            "Enter the number in the format 096 123 45 67 (10 digits)"
+        )
+    return phone_number
