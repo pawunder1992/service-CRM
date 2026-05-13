@@ -297,3 +297,10 @@ class ServiceCategoryDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = ServiceCategory
     template_name = "crm/service_category_delete_confirm.html"
     success_url = reverse_lazy("crm:service-category-list")
+
+
+class ServiceCategoryCreateView(LoginRequiredMixin, generic.CreateView):
+    model = ServiceCategory
+    template_name = "crm/service_category_form.html"
+    fields = "__all__"
+    success_url = reverse_lazy("crm:service-category-list")
