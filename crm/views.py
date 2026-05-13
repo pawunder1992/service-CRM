@@ -106,3 +106,28 @@ class OrderDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Order
     template_name = "crm/order_confirm_delete.html"
     success_url = reverse_lazy("crm:order-list")
+
+
+class ClientListView(LoginRequiredMixin, generic.ListView):
+    model = Client
+    context_object_name = "client_list"
+    template_name = "crm/client_list.html"
+    paginate_by = 5
+
+    def get_context_data(self, *, object_list=..., **kwargs):
+        context = super().get_context_data(**kwargs)
+        license_plate = self.request.GET.get("license_plate", "")
+
+        context["search_form"] = ClientSearchForm(
+            initial={"license_plate": license_plate}
+        )
+        return context
+
+    def get_queryset(self):
+        queryset = Client.objects.all().order_by("-id")
+        form = ClientSearchForm(self.request.GET)
+        if form.is_valid():
+            return queryset.filter(
+                license_plate__icontains=form.cleaned_data["license_plate"]
+            )
+        return queryset

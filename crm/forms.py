@@ -26,3 +26,13 @@ class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
         fields = "__all__"
+
+class ClientSearchForm(forms.Form):
+    license_plate = forms.CharField(
+        required=False,
+        max_length=255,
+        label="",
+        widget=forms.TextInput(
+            attrs={"placeholder": "search by license_plate"}
+        ),
+    )
