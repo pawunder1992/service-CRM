@@ -1,5 +1,5 @@
 
-
+from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Count, Q
@@ -10,7 +10,7 @@ from django.views import generic
 from .forms import OrderSearchForm, OrderForm
 from .models import Order, Client, Worker, ServiceCategory, Specialty
 
-
+current_month = timezone.now().month
 
 
 @login_required
@@ -86,3 +86,7 @@ class OrderCreateView(LoginRequiredMixin, generic.CreateView):
         if client_id:
             initial["client"] = client_id
         return initial
+
+class OrderDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Order
+    template_name = "crm/order_detail.html"
