@@ -1,0 +1,103 @@
+{% extends "registration/../base.html" %}
+{% load static %}
+
+{% block content %}
+  <div class="container-fluid py-4">
+    <div class="page-header min-height-150 border-radius-xl mt-4 d-flex flex-column justify-content-end"
+         style="background-image: url('{% static "assets/img/curved-images/curved0.jpg" %}'); background-size: cover;">
+      <span class="mask bg-gradient-primary opacity-6"></span>
+      <div class="w-100 position-relative p-3">
+        <div class="d-flex justify-content-between align-items-end">
+          <div class="d-flex align-items-center">
+            <div class="avatar avatar-xl position-relative me-3">
+              <img src="{% static "assets/img/bruce-mars.jpg" %}" alt="profile_image"
+                   class="w-100 border-radius-lg shadow-sm">
+            </div>
+            <div>
+              <h5 class="mb-1 text-white font-weight-bolder">
+                {{ object.owner_name }}
+              </h5>
+              <p class="mb-0 text-white text-sm opacity-8">
+                {{ object.model }} | {{ object.license_plate }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-12 col-xl-4 mb-4">
+        <div class="card h-100">
+          <div class="card-header pb-0 p-3">
+            <div class="row">
+              <div class="col-md-8 d-flex align-items-center">
+                <h6 class="mb-0">Contacts</h6>
+              </div>
+              <div class="col-md-4 text-end">
+                <a href="{% url 'crm:client-update' pk=object.id %}">
+                  {% if user.is_superuser %}
+                    <i class="fas fa-user-edit text-secondary text-sm" title="Edit"></i>
+                  {% endif %}
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="card-body p-3">
+            <ul class="list-group">
+              <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Phone number:</strong>
+                &nbsp; {{ object.phone_number }}</li>
+              <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Car:</strong>
+                &nbsp; {{ object.model }}</li>
+              <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">License plate:</strong> &nbsp;
+                <span class="badge badge-sm bg-gradient-dark">{{ object.license_plate }}</span></li>
+            </ul>
+            <hr class="horizontal gray-light my-4">
+            <div class="d-flex gap-2">
+              {% if user.is_superuser %}
+                <a href="{% url 'crm:client-delete' pk=object.id %}"
+                   class="btn btn-outline-danger btn-sm mb-0">Delete</a>
+              {% endif %}
+              <a href="{% url 'crm:client-list' %}" class="btn btn-light btn-sm mb-0">Back</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-xl-8">
+        <div class="card h-100">
+          <div class="card-header pb-0 p-3">
+            <h6 class="mb-0">Orders History</h6>
+          </div>
+          <div class="card-body p-3">
+            <ul class="list-group">
+              {% for order in object.orders.all %}
+                <li class="list-group-item border-0 d-flex align-items-center px-0 mb-2">
+                  <div class="avatar me-3">
+                    {% if order.is_completed %}
+                      <div class="icon icon-shape icon-sm bg-gradient-success shadow text-center border-radius-sm">
+                        <i class="ni ni-check-bold opacity-10"></i>
+                      </div>
+                    {% else %}
+                      <div class="icon icon-shape icon-sm bg-gradient-warning shadow text-center border-radius-sm">
+                        <i class="ni ni-settings opacity-10"></i>
+                      </div>
+                    {% endif %}
+                  </div>
+                  <div class="d-flex align-items-start flex-column justify-content-center">
+                    <h6 class="mb-0 text-sm">{{ order.category }}</h6>
+                    <p class="mb-0 text-xs">{{ order.date|date:"d M Y, H:i" }}</p>
+                  </div>
+                  <a class="btn btn-link pe-3 ps-0 mb-0 ms-auto"
+                     href="{% url 'crm:order-detail' pk=order.id %}">Details</a>
+                </li>
+              {% empty %}
+                <li class="list-group-item border-0 text-center text-muted">No orders yet</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

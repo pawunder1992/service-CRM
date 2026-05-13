@@ -7,7 +7,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from .forms import OrderSearchForm, OrderForm
+from .forms import OrderSearchForm, OrderForm, ClientSearchForm
 from .models import Order, Client, Worker, ServiceCategory, Specialty
 
 current_month = timezone.now().month
@@ -131,3 +131,8 @@ class ClientListView(LoginRequiredMixin, generic.ListView):
                 license_plate__icontains=form.cleaned_data["license_plate"]
             )
         return queryset
+
+
+class ClientDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Client
+    template_name = "crm/client_detail.html"
