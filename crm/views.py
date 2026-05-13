@@ -1,3 +1,4 @@
+import datetime
 
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
@@ -201,3 +202,56 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
         elif status == "inactive":
             queryset = queryset.filter(is_active=False).order_by("-id")
         return queryset
+
+
+
+class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Worker
+    template_name = "crm/worker_detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        worker = self.object
+        current_date = datetime.date.today()
+        completed_orders = worker.orders.filter(is_completed=True).annotate(
+            num_workers=Count("performers")
+        )
+        earn_all_time = 0
+        earn_month = 0
+        count_month = 0
+        monthly_data = {}
+        for order in completed_orders:
+            share = order.total_price / order.num_workers
+            earn_all_time += share
+            month_key = order.date.strftime("%Y-%m")
+            if month_key not in monthly_data:
+                monthly_data[month_key] = {"earn": 0, "count": 0}
+            monthly_data[month_key]["earn"] += share
+            monthly_data[month_key]["count"] += 1
+            if (
+                order.date.month == current_date.month
+                and order.date.year == current_date.year
+            ):
+                earn_month += share
+                count_month += 1
+        stats_by_month = [
+            {
+                "date": datetime.datetime.strptime(m, "%Y-%m"),
+                "earn": round(v["earn"], 2),
+                "count": v["count"],
+            }
+            for m, v in sorted(monthly_data.items(), reverse=True)
+        ]
+        context["earn_all_time"] = round(earn_all_time, 2)
+        context["earn_month"] = round(earn_month, 2)
+        context["count_all_time"] = completed_orders.count()
+        context["count_month"] = count_month
+        context["monthly_stats"] = stats_by_month
+        total_months = (current_date.year - worker.date_joined.year) * 12 + (
+            current_date.month - worker.date_joined.month
+        )
+        context["year"] = total_months // 12
+        context["month"] = total_months % 12
+        context["orders"] = worker.orders.all().order_by("-date")
+
+        return context

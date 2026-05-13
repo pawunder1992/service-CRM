@@ -1,7 +1,8 @@
 from django.urls import path
 
 from .views import index, OrderListView, OrderCreateView, OrderUpdateView, OrderDetailView, OrderDeleteView, \
-    ClientListView, ClientDetailView, ClientDeleteView, ClientCreateView, ClientUpdateView, WorkerListView
+    ClientListView, ClientDetailView, ClientDeleteView, ClientCreateView, ClientUpdateView, WorkerListView, \
+    WorkerDetailView
 
 app_name = "crm"
 
@@ -38,4 +39,5 @@ path(
         name="client-update",
     ),
 path("workers/", WorkerListView.as_view(), name="worker-list"),
+path("workers/<int:pk>/", WorkerDetailView.as_view(), name="worker-detail"),
 ]
