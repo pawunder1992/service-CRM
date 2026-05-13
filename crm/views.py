@@ -136,3 +136,9 @@ class ClientListView(LoginRequiredMixin, generic.ListView):
 class ClientDetailView(LoginRequiredMixin, generic.DetailView):
     model = Client
     template_name = "crm/client_detail.html"
+
+
+class ClientDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Client
+    template_name = "crm/client_delete_confirm.html"
+    success_url = reverse_lazy("crm:client-list")
