@@ -9,7 +9,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 
 from .forms import OrderSearchForm, OrderForm, ClientSearchForm, ClientCreationForm, WorkerSearchForm, \
-    WorkerCreationForm, ServiceCategorySearchForm
+    WorkerCreationForm, ServiceCategorySearchForm, SpecialtySearchForm
 from .models import Order, Client, Worker, ServiceCategory, Specialty
 
 current_month = timezone.now().month
@@ -335,3 +335,9 @@ class SpecialtyListView(LoginRequiredMixin, generic.ListView):
         if form.is_valid():
             return queryset.filter(name__icontains=form.cleaned_data["name"])
         return queryset
+
+
+class SpecialtyDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Specialty
+    template_name = "crm/specialty_delete_confirm.html"
+    success_url = reverse_lazy("crm:specialty-list")
