@@ -4,7 +4,7 @@ from .views import index, OrderListView, OrderCreateView, OrderUpdateView, Order
     ClientListView, ClientDetailView, ClientDeleteView, ClientCreateView, ClientUpdateView, WorkerListView, \
     WorkerDetailView, WorkerCreateView, WorkerUpdateView, ServiceCategoryListView, ServiceCategoryDeleteView, \
     ServiceCategoryCreateView, ServiceCategoryUpdateView, SpecialtyListView, SpecialtyDeleteView, SpecialtyCreateView, \
-    SpecialtyUpdateView
+    SpecialtyUpdateView, SpecialtyDetailView
 
 app_name = "crm"
 
@@ -81,4 +81,5 @@ urlpatterns = [
         SpecialtyUpdateView.as_view(),
         name="specialty-update",
     ),
+path("specialty/<int:pk>/", SpecialtyDetailView.as_view(), name="specialty-detail"),
 ]
