@@ -2,7 +2,7 @@ from django.urls import path
 
 from .views import index, OrderListView, OrderCreateView, OrderUpdateView, OrderDetailView, OrderDeleteView, \
     ClientListView, ClientDetailView, ClientDeleteView, ClientCreateView, ClientUpdateView, WorkerListView, \
-    WorkerDetailView
+    WorkerDetailView, WorkerCreateView, WorkerUpdateView
 
 app_name = "crm"
 
@@ -40,4 +40,10 @@ path(
     ),
 path("workers/", WorkerListView.as_view(), name="worker-list"),
 path("workers/<int:pk>/", WorkerDetailView.as_view(), name="worker-detail"),
+path("workers/create/", WorkerCreateView.as_view(), name="worker-create"),
+    path(
+        "workers/<int:pk>/update/",
+        WorkerUpdateView.as_view(),
+        name="worker-update",
+    ),
 ]

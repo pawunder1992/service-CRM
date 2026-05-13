@@ -261,3 +261,11 @@ class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
 class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
     model = Worker
     form_class = WorkerCreationForm
+
+
+
+class WorkerUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Worker
+    fields = ["username", "first_name", "last_name", "specialty", "is_active"]
+    template_name = "crm/worker_form.html"
+    success_url = reverse_lazy("crm:worker-list")
