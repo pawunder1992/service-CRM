@@ -100,3 +100,9 @@ class OrderUpdateView(LoginRequiredMixin, generic.UpdateView):
     def get_success_url(self):
 
         return reverse_lazy("crm:order-detail", kwargs={"pk": self.object.pk})
+
+
+class OrderDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Order
+    template_name = "crm/order_confirm_delete.html"
+    success_url = reverse_lazy("crm:order-list")
