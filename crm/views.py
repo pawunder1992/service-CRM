@@ -291,3 +291,9 @@ class ServiceCategoryListView(LoginRequiredMixin, generic.ListView):
         if form.is_valid():
             return queryset.filter(name__icontains=form.cleaned_data["name"])
         return queryset
+
+
+class ServiceCategoryDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = ServiceCategory
+    template_name = "crm/service_category_delete_confirm.html"
+    success_url = reverse_lazy("crm:service-category-list")
