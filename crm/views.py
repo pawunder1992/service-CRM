@@ -4,9 +4,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Count, Q
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import generic
 
-from .forms import OrderSearchForm
+from .forms import OrderSearchForm, OrderForm
 from .models import Order, Client, Worker, ServiceCategory, Specialty
 
 
@@ -71,3 +72,17 @@ class OrderListView(LoginRequiredMixin, generic.ListView):
         elif status == "my_orders":
             queryset = queryset.filter(performers__id=self.request.user.id).distinct()
         return queryset
+
+
+class OrderCreateView(LoginRequiredMixin, generic.CreateView):
+    form_class = OrderForm
+    template_name = "crm/order_form.html"
+    success_url = reverse_lazy("crm:order-list")
+
+    def get_initial(self):
+        initial = super().get_initial()
+
+        client_id = self.request.session.pop("last_client_id", None)
+        if client_id:
+            initial["client"] = client_id
+        return initial
