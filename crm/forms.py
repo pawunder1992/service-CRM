@@ -110,3 +110,13 @@ class ServiceCategorySearchForm(forms.Form):
         label="",
         widget=forms.TextInput(attrs={"placeholder": "search by category"}),
     )
+
+
+
+class SpecialtySearchForm(forms.Form):
+    name = forms.CharField(
+        required=False,
+        max_length=255,
+        label="",
+        widget=forms.TextInput(attrs={"placeholder": "search by specialty"}),
+    )

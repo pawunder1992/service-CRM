@@ -312,3 +312,26 @@ class ServiceCategoryUpdateView(LoginRequiredMixin, generic.UpdateView):
     template_name = "crm/service_category_form.html"
     fields = "__all__"
     success_url = reverse_lazy("crm:service-category-list")
+
+
+
+class SpecialtyListView(LoginRequiredMixin, generic.ListView):
+    model = Specialty
+    fields = "__all__"
+    template_name = "crm/specialty_list.html"
+    context_object_name = "specialty_list"
+    paginate_by = 5
+
+    def get_context_data(self, *, object_list=..., **kwargs):
+        context = super().get_context_data(**kwargs)
+        name = self.request.GET.get("name", "")
+
+        context["search_form"] = SpecialtySearchForm(initial={"name": name})
+        return context
+
+    def get_queryset(self):
+        queryset = Specialty.objects.all()
+        form = SpecialtySearchForm(self.request.GET)
+        if form.is_valid():
+            return queryset.filter(name__icontains=form.cleaned_data["name"])
+        return queryset
