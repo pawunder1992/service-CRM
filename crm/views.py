@@ -8,7 +8,8 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from .forms import OrderSearchForm, OrderForm, ClientSearchForm, ClientCreationForm, WorkerSearchForm
+from .forms import OrderSearchForm, OrderForm, ClientSearchForm, ClientCreationForm, WorkerSearchForm, \
+    WorkerCreationForm
 from .models import Order, Client, Worker, ServiceCategory, Specialty
 
 current_month = timezone.now().month
@@ -255,3 +256,8 @@ class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
         context["orders"] = worker.orders.all().order_by("-date")
 
         return context
+
+
+class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Worker
+    form_class = WorkerCreationForm

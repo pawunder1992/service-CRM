@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 
 from crm.models import Worker, Order
@@ -88,3 +89,15 @@ class WorkerSearchForm(forms.Form):
         label="",
         widget=forms.TextInput(attrs={"placeholder": "search by last_name"}),
     )
+
+
+class WorkerCreationForm(UserCreationForm):
+
+    class Meta(UserCreationForm.Meta):
+        model = Worker
+        fields = UserCreationForm.Meta.fields + (
+            "specialty",
+            "first_name",
+            "last_name",
+            "is_active",
+        )
