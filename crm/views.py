@@ -304,3 +304,11 @@ class ServiceCategoryCreateView(LoginRequiredMixin, generic.CreateView):
     template_name = "crm/service_category_form.html"
     fields = "__all__"
     success_url = reverse_lazy("crm:service-category-list")
+
+
+
+class ServiceCategoryUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = ServiceCategory
+    template_name = "crm/service_category_form.html"
+    fields = "__all__"
+    success_url = reverse_lazy("crm:service-category-list")
