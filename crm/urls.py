@@ -3,7 +3,8 @@ from django.urls import path
 from .views import index, OrderListView, OrderCreateView, OrderUpdateView, OrderDetailView, OrderDeleteView, \
     ClientListView, ClientDetailView, ClientDeleteView, ClientCreateView, ClientUpdateView, WorkerListView, \
     WorkerDetailView, WorkerCreateView, WorkerUpdateView, ServiceCategoryListView, ServiceCategoryDeleteView, \
-    ServiceCategoryCreateView, ServiceCategoryUpdateView, SpecialtyListView, SpecialtyDeleteView, SpecialtyCreateView
+    ServiceCategoryCreateView, ServiceCategoryUpdateView, SpecialtyListView, SpecialtyDeleteView, SpecialtyCreateView, \
+    SpecialtyUpdateView
 
 app_name = "crm"
 
@@ -75,4 +76,9 @@ urlpatterns = [
         name="specialty-delete",
     ),
     path("specialty/create/", SpecialtyCreateView.as_view(), name="specialty-create"),
+    path(
+        "specialty/<int:pk>/update/",
+        SpecialtyUpdateView.as_view(),
+        name="specialty-update",
+    ),
 ]

@@ -348,3 +348,10 @@ class SpecialtyCreateView(LoginRequiredMixin, generic.CreateView):
     template_name = "crm/specialty_form.html"
     fields = "__all__"
     success_url = reverse_lazy("crm:specialty-list")
+
+
+class SpecialtyUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Specialty
+    template_name = "crm/specialty_form.html"
+    fields = "__all__"
+    success_url = reverse_lazy("crm:specialty-list")
