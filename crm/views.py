@@ -341,3 +341,10 @@ class SpecialtyDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Specialty
     template_name = "crm/specialty_delete_confirm.html"
     success_url = reverse_lazy("crm:specialty-list")
+
+
+class SpecialtyCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Specialty
+    template_name = "crm/specialty_form.html"
+    fields = "__all__"
+    success_url = reverse_lazy("crm:specialty-list")
