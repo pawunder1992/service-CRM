@@ -101,3 +101,12 @@ class WorkerCreationForm(UserCreationForm):
             "last_name",
             "is_active",
         )
+
+
+class ServiceCategorySearchForm(forms.Form):
+    name = forms.CharField(
+        required=False,
+        max_length=255,
+        label="",
+        widget=forms.TextInput(attrs={"placeholder": "search by category"}),
+    )

@@ -1,0 +1,100 @@
+{% extends "layouts/base.html" %}
+{% load crispy_forms_filters %}
+{% load static %}
+
+{% block content %}
+  <div class="container-fluid py-4">
+    <div class="row">
+      <div class="col-12 col-md-10 mx-auto">
+        <div class="card mb-4 shadow-sm">
+
+          <div class="card-header pb-0 d-flex justify-content-between align-items-center">
+            <h6 class="font-weight-bolder">Service categories</h6>
+            {% if user.is_superuser %}
+              <a href="{% url 'crm:service-category-create' %}" class="btn bg-gradient-primary btn-sm mb-0">
+                <i class="fas fa-plus me-2"></i>Add category
+              </a>{% endif %}
+          </div>
+
+          <div class="card-body px-0 pt-0 pb-2">
+
+            <div class="p-3 bg-gray-100 border-radius-lg mx-3 my-3">
+              <form method="get" action="" class="mb-0">
+                <div class="input-group">
+                  <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+                  <input type="text" name="name" class="form-control" placeholder="Search by category name..."
+                         value="{{ request.GET.name|default:'' }}">
+                  <button class="btn btn-dark mb-0 px-4" type="submit">Search</button>
+                </div>
+              </form>
+            </div>
+
+            <div class="table-responsive p-0">
+              {% if category_list %}
+                <table class="table align-items-center mb-0">
+                  <thead>
+                  <tr>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Category</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Hour cost</th>
+                    <th class="text-secondary opacity-7"></th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {% for category in category_list %}
+                    <tr class="align-middle">
+                      <td>
+                        <div class="d-flex px-3 py-1">
+                          <div>
+                            <div
+                                class="icon icon-sm icon-shape bg-gradient-warning shadow-warning text-center border-radius-md me-3 d-flex align-items-center justify-content-center">
+                              <i class="fas fa-coins text-white opacity-10"></i>
+                            </div>
+                          </div>
+                          <div class="d-flex flex-column justify-content-center">
+                            <h6 class="mb-0 text-sm text-dark font-weight-bold">
+                              {{ category.name }}
+                            </h6>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <p class="text-sm font-weight-bold mb-0 text-dark">
+                          {{ category.hour_cost }} <span
+                            class="text-xs text-secondary font-weight-normal">uah / hour</span>
+                        </p>
+                      </td>
+                      {% if user.is_superuser %}
+                        <td class="text-end px-4">
+                          <a href="{% url 'crm:service-category-update' pk=category.id %}"
+                             class="text-secondary font-weight-bold text-xs me-3" data-bs-toggle="tooltip" title="Edit">
+                            <i class="fas fa-pencil-alt text-sm"></i>
+                          </a>
+                          <a href="{% url 'crm:service-category-delete' pk=category.id %}"
+                             class="text-danger font-weight-bold text-xs" data-bs-toggle="tooltip" title="Delete">
+                            <i class="far fa-trash-alt text-sm"></i>
+                          </a>
+                        </td>
+                      {% endif %}
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              {% else %}
+                <div class="text-center p-5">
+                  <h6 class="text-secondary opacity-7">No categories.</h6>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+
+          {% if is_paginated %}
+            <div class="card-footer pt-0">
+              {% include "includes/pagination.html" %}
+            </div>
+          {% endif %}
+
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

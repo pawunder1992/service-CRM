@@ -9,7 +9,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 
 from .forms import OrderSearchForm, OrderForm, ClientSearchForm, ClientCreationForm, WorkerSearchForm, \
-    WorkerCreationForm
+    WorkerCreationForm, ServiceCategorySearchForm
 from .models import Order, Client, Worker, ServiceCategory, Specialty
 
 current_month = timezone.now().month
@@ -269,3 +269,25 @@ class WorkerUpdateView(LoginRequiredMixin, generic.UpdateView):
     fields = ["username", "first_name", "last_name", "specialty", "is_active"]
     template_name = "crm/worker_form.html"
     success_url = reverse_lazy("crm:worker-list")
+
+
+class ServiceCategoryListView(LoginRequiredMixin, generic.ListView):
+    model = ServiceCategory
+    fields = "__all__"
+    template_name = "crm/service_category_list.html"
+    context_object_name = "category_list"
+    paginate_by = 5
+
+    def get_context_data(self, *, object_list=..., **kwargs):
+        context = super().get_context_data(**kwargs)
+        name = self.request.GET.get("name", "")
+
+        context["search_form"] = ServiceCategorySearchForm(initial={"name": name})
+        return context
+
+    def get_queryset(self):
+        queryset = ServiceCategory.objects.all()
+        form = ServiceCategorySearchForm(self.request.GET)
+        if form.is_valid():
+            return queryset.filter(name__icontains=form.cleaned_data["name"])
+        return queryset
