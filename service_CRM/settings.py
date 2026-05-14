@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/6.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -36,7 +36,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "admin_soft",
     "debug_toolbar",
     "crm",
     "crispy_forms",
@@ -118,6 +117,9 @@ USE_TZ = True
 STATIC_URL = "static/"
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
 AUTH_USER_MODEL = "crm.Worker"
 INTERNAL_IPS = [
@@ -125,8 +127,6 @@ INTERNAL_IPS = [
 ]
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
-# Після логіну перекидаємо на головну або на список працівників
-LOGIN_REDIRECT_URL = "crm:index"
 
-# Також корисно додати куди перекидати після виходу
+LOGIN_REDIRECT_URL = "crm:index"
 LOGOUT_REDIRECT_URL = "login"

@@ -1,4 +1,4 @@
-{% extends "layouts/base.html" %}
+{% extends "base.html" %}
 {% load crispy_forms_filters %}
 {% load static %}
 
@@ -84,9 +84,7 @@
           </div>
 
           {% if is_paginated %}
-            <div class="card-footer pt-0">
-              {% include "includes/pagination.html" %}
-            </div>
+            <div class="card-footer pt-0">{% include "includes/pagination.html" %}</div>
           {% endif %}
 
         </div>
