@@ -1,12 +1,13 @@
 import datetime
 
 from django.utils import timezone
-from django.contrib.auth.decorators import login_required
+
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import Count, Q
-from django.shortcuts import render
+from django.db.models import Count, Sum
+
 from django.urls import reverse_lazy
 from django.views import generic
+from django.views.generic import TemplateView
 
 from .forms import (
     OrderSearchForm,
@@ -20,37 +21,38 @@ from .forms import (
 )
 from .models import Order, Client, Worker, ServiceCategory, Specialty
 
-current_month = timezone.now().month
+from django.views.generic import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
+from .models import Order, Worker
 
 
-@login_required
-def index(request):
-    """View function for the home page of the site."""
-    sum_all = sum(
-        order.total_price for order in Order.objects.filter(is_completed=True)
-    )
-    sum_month = sum(
-        order.total_price
-        for order in Order.objects.filter(
-            Q(is_completed=True) & Q(date__month=current_month)
+class IndexView(LoginRequiredMixin, TemplateView):
+    template_name = "crm/index.html"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        sum_all = sum(
+            order.total_price for order in Order.objects.filter(is_completed=True)
         )
-    )
-    num_orders = Order.objects.filter(is_completed=False).count()
-    num_worker = Worker.objects.filter(is_active=True).count()
-
-    num_visits = request.session.get("num_visits", 0)
-    request.session["num_visits"] = num_visits + 1
-
-    context = {
-        "sum_all": sum_all,
-        "num_orders": num_orders,
-        "num_worker": num_worker,
-        "num_visits": num_visits + 1,
-        "sum_month": sum_month,
-    }
-
-    return render(request, "crm/index.html", context=context)
-
+        current_month = timezone.now().month
+        sum_month = sum(
+            order.total_price
+            for order in Order.objects.filter(
+                Q(is_completed=True) & Q(date__month=current_month)
+            )
+        )
+        num_orders = Order.objects.filter(is_completed=False).count()
+        num_worker = Worker.objects.filter(is_active=True).count()
+        num_visits = self.request.session.get("num_visits", 0)
+        self.request.session["num_visits"] = num_visits + 1
+        context.update({
+            "sum_all": sum_all,
+            "num_orders": num_orders,
+            "num_worker": num_worker,
+            "num_visits": num_visits + 1,
+            "sum_month": sum_month,
+        })
+        return context
 
 class OrderListView(LoginRequiredMixin, generic.ListView):
     model = Order

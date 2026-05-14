@@ -44,8 +44,6 @@ class PrivateIndexTest(BaseTestCase):
         self.assertTemplateUsed(response1, "crm/index.html")
 
 
-#
-#
 class PrivateServiceCategoryTests(BaseTestCase):
 
     def test_create_service_category(self):
@@ -61,8 +59,6 @@ class PrivateServiceCategoryTests(BaseTestCase):
         self.assertEqual(form.initial["name"], "test")
 
 
-#
-#
 class PrivateWorkerTests(BaseTestCase):
 
     def test_create_worker(self):
@@ -82,7 +78,6 @@ class PrivateWorkerTests(BaseTestCase):
             (form_data["first_name"], form_data["last_name"], form_data["username"]),
         )
 
-    #
     def test_worker_list_context(self):
         res = self.client.get(reverse("crm:worker-list"), {"last_name": "test"})
         self.assertIn("search_form", res.context)
@@ -112,13 +107,9 @@ class PrivateOrderTests(BaseTestCase):
             "performers": [self.user.id],
             "norm_hours": 4,
         }
-
         response = self.client.post(reverse("crm:order-create"), form_data)
-
         self.assertEqual(response.status_code, 302)
-
         new_order = Order.objects.get(description="Big problem")
-
         self.assertEqual(new_order.category.id, form_data["category"])
         self.assertEqual(new_order.client.id, form_data["client"])
         self.assertEqual(new_order.description, form_data["description"])

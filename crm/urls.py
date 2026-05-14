@@ -1,7 +1,7 @@
 from django.urls import path
 
 from .views import (
-    index,
+    IndexView,
     OrderListView,
     OrderCreateView,
     OrderUpdateView,
@@ -30,7 +30,7 @@ from .views import (
 app_name = "crm"
 
 urlpatterns = [
-    path("", index, name="index"),
+    path("", IndexView.as_view(), name="index"),
     path(
         "orders/",
         OrderListView.as_view(),
