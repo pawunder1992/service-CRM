@@ -12,7 +12,7 @@
               <h6 class="mb-0">Order № {{ object.id }}</h6>
               <span
                   class="badge badge-sm {% if object.is_completed %}bg-gradient-success{% else %}bg-gradient-warning{% endif %}">
-              {% if object.is_completed %}Complete{% else %}В роботі{% endif %}
+              {% if object.is_completed %}Complete{% else %}in process{% endif %}
             </span>
             </div>
             <p class="text-muted text-xs mt-1">Create at: {{ object.date|date:"d.m.Y H:i" }}</p>
