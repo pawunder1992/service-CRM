@@ -1,0 +1,79 @@
+{% extends "registration/../base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+<div class="container mt-3">
+  <h1>{% if form.instance.pk %}Update{% else %}Create{% endif %} order</h1>
+
+  <form method="post" novalidate>
+    {% csrf_token %}
+    <label class="form-label">Client search (number or name)</label>
+<div class="input-group mb-3 d-flex align-items-stretch">
+    <input type="text" id="client-search" class="form-control"
+           list="clients-list" placeholder="Type here to search..."
+           autocomplete="off">
+
+    <input type="hidden" name="client" id="id_client_hidden"
+           value="{{ form.initial.client|default:form.instance.client.id|default:'' }}">
+    <a href="{% url 'crm:client-create' %}?next=order" class="btn btn-outline-success mb-0 d-flex align-items-center">
+        + New
+    </a>
+</div>
+{% if form.client.errors %}
+    <div class="text-danger text-xs mb-3 mt-1 font-weight-bold">
+        This field is required.
+    </div>
+{% else %}
+    <div class="mb-3"></div> {% endif %}
+    <datalist id="clients-list">
+        {% for client in form.fields.client.queryset %}
+            <option data-id="{{ client.id }}" value="{{ client.license_plate }} | {{ client.owner_name }}">
+        {% endfor %}
+    </datalist>
+
+    {% for field in form %}
+    {% if field.name != 'client' %}
+        {% if not form.instance.pk %}
+            {% if field.name != "is_completed" %}
+                {{ field|as_crispy_field }}
+            {% endif %}
+
+        {% else %}
+            {{ field|as_crispy_field }}
+        {% endif %}
+    {% endif %}
+{% endfor %}
+    <button type="submit" class="btn btn-primary mt-3">Save</button>
+  </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('client-search');
+    const hiddenInput = document.getElementById('id_client_hidden');
+    const options = document.getElementById('clients-list').options;
+
+
+    if (hiddenInput.value) {
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].getAttribute('data-id') === hiddenInput.value) {
+                searchInput.value = options[i].value;
+                break;
+            }
+        }
+    }
+
+    searchInput.addEventListener('input', function(e) {
+        const val = e.target.value;
+        hiddenInput.value = "";
+
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].value === val) {
+                hiddenInput.value = options[i].getAttribute('data-id');
+                break;
+            }
+        }
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  <div class="container-fluid py-4">
+    <div class="row">
+      <div class="col-12">
+        <div class="card mb-4">
+
+          <div class="card-header pb-0 d-flex justify-content-between align-items-center">
+            <h6>Order table (Orders)</h6>
+            {% if user.is_superuser %}
+              <a href="{% url 'crm:order-create' %}" class="btn bg-gradient-primary btn-sm mb-0">
+                + New order
+              </a>
+            {% endif %}
+          </div>
+
+          <div class="card-body px-0 pt-0 pb-2">
+
+            <div class="p-3 bg-gray-100 border-radius-lg mx-3 my-3">
+              <div class="row align-items-center">
+
+                <div class="col-md-5">
+                  <form method="get" action="" class="d-flex align-items-center gap-2 mb-0 custom-search-wrapper">
+                    <div class="flex-grow-1">
+                      {{ search_form|crispy }}
+                    </div>
+                    <button type="submit" class="btn bg-gradient-dark mb-0 px-3">🔍</button>
+
+                    {% if request.GET.status %}
+                      <input type="hidden" name="status" value="{{ request.GET.status }}">
+                    {% endif %}
+                  </form>
+                </div>
+
+                <div class="col-md-7 text-end">
+                  <div class="btn-group">
+                    <a href="?status=all{% if request.GET.license_plate %}&license_plate={{ request.GET.license_plate }}{% endif %}"
+                       class="btn btn-sm {% if not request.GET.status or request.GET.status == 'all' %}btn-primary{% else %}btn-outline-primary{% endif %} mb-0">
+                      All
+                    </a>
+                    <a href="?status=waiting{% if request.GET.license_plate %}&license_plate={{ request.GET.license_plate }}{% endif %}"
+                       class="btn btn-sm {% if request.GET.status == 'waiting' %}btn-primary{% else %}btn-outline-primary{% endif %} mb-0">
+                      In process
+                    </a>
+                    <a href="?status=completed{% if request.GET.license_plate %}&license_plate={{ request.GET.license_plate }}{% endif %}"
+                       class="btn btn-sm {% if request.GET.status == 'completed' %}btn-primary{% else %}btn-outline-primary{% endif %} mb-0">
+                      Archive
+                    </a>
+                    <a href="?status=my_orders{% if request.GET.license_plate %}&license_plate={{ request.GET.license_plate }}{% endif %}"
+                       class="btn btn-sm {% if request.GET.status == 'my_orders' %}btn-primary{% else %}btn-outline-primary{% endif %} mb-0">
+                      My orders
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="table-responsive p-0">
+              <table class="table align-items-center justify-content-center mb-0">
+                <thead>
+                <tr>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-start">Order /
+                    Client
+                  </th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-start">Date
+                  </th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-start">
+                    Category
+                  </th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-start">
+                    Status
+                  </th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for order in order_list %}
+                  <tr>
+                    <td class="text-start">
+                      <div class="d-flex px-3">
+                        <div class="my-auto">
+                          <h6 class="mb-0 text-sm">
+                            <a href="{{ order.get_absolute_url }}" class="text-dark">№ {{ order.id }}
+                              - {{ order.client }}</a>
+                          </h6>
+                          {% if user in order.performers.all %}
+                            <span class="badge badge-sm bg-gradient-info" style="font-size: 0.6rem;">MY ORDER</span>
+                          {% endif %}
+                        </div>
+                      </div>
+                    </td>
+                    <td class="text-start">
+                      <p class="text-sm font-weight-bold mb-0 text-secondary">{{ order.date|date:"d.m.Y H:i" }}</p>
+                    </td>
+                    <td class="text-start">
+                      <span class="text-xs font-weight-bold">{{ order.category }}</span>
+                    </td>
+                    <td class="text-start">
+                      {% if order.is_completed %}
+                        <span class="badge badge-sm bg-gradient-success">Completed</span>
+                      {% else %}
+                        <span class="badge badge-sm bg-gradient-warning">In process</span>
+                      {% endif %}
+                    </td>
+                  </tr>
+                {% empty %}
+                  <tr>
+                    <td colspan="4" class="text-center py-4">
+                      <p class="text-muted">No orders</p>
+                    </td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {% if is_paginated %}
+            <div class="card-footer pt-0">
+              {% include "includes/pagination.html" %}
+            </div>
+          {% endif %}
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+
+      .custom-search-wrapper .form-group, .custom-search-wrapper .mb-3 {
+          margin-bottom: 0 !important;
+      }
+  </style>
+{% endblock %}

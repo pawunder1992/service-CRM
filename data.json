@@ -1,0 +1,2246 @@
+[
+  {
+    "model": "crm.specialty",
+    "pk": 1,
+    "fields": {
+      "name": "Mechanic"
+    }
+  },
+  {
+    "model": "crm.specialty",
+    "pk": 2,
+    "fields": {
+      "name": "Electrician"
+    }
+  },
+  {
+    "model": "crm.specialty",
+    "pk": 3,
+    "fields": {
+      "name": "Suspension Specialist"
+    }
+  },
+  {
+    "model": "crm.specialty",
+    "pk": 4,
+    "fields": {
+      "name": "Body Technician"
+    }
+  },
+  {
+    "model": "crm.specialty",
+    "pk": 5,
+    "fields": {
+      "name": "Diagnostics Expert"
+    }
+  },
+  {
+    "model": "crm.specialty",
+    "pk": 6,
+    "fields": {
+      "name": "Detailer"
+    }
+  },
+  {
+    "model": "crm.servicecategory",
+    "pk": 1,
+    "fields": {
+      "name": "General Diagnostics",
+      "hour_cost": 50
+    }
+  },
+  {
+    "model": "crm.servicecategory",
+    "pk": 2,
+    "fields": {
+      "name": "Engine Repair",
+      "hour_cost": 120
+    }
+  },
+  {
+    "model": "crm.servicecategory",
+    "pk": 3,
+    "fields": {
+      "name": "Suspension Service",
+      "hour_cost": 80
+    }
+  },
+  {
+    "model": "crm.servicecategory",
+    "pk": 4,
+    "fields": {
+      "name": "Brake System",
+      "hour_cost": 60
+    }
+  },
+  {
+    "model": "crm.servicecategory",
+    "pk": 5,
+    "fields": {
+      "name": "Oil Change",
+      "hour_cost": 30
+    }
+  },
+  {
+    "model": "crm.servicecategory",
+    "pk": 6,
+    "fields": {
+      "name": "Transmission Tuning",
+      "hour_cost": 150
+    }
+  },
+  {
+    "model": "crm.worker",
+    "pk": 1,
+    "fields": {
+      "username": "admin",
+      "password": "pbkdf2_sha256$600000$salt$E8Iu1L+vY464UPrp6yqJ7XhB9D79xYJ7Y7Y7Y7Y7Y7Y=",
+      "is_superuser": true,
+      "is_staff": true,
+      "is_active": true,
+      "first_name": "Main",
+      "last_name": "Administrator",
+      "specialty": 5
+    }
+  },
+  {
+    "model": "crm.worker",
+    "pk": 2,
+    "fields": {
+      "username": "worker_1",
+      "password": "pbkdf2_sha256$600000$salt$E8Iu1L+vY464UPrp6yqJ7XhB9D79xYJ7Y7Y7Y7Y7Y7Y=",
+      "is_superuser": false,
+      "is_staff": true,
+      "is_active": true,
+      "first_name": "John",
+      "last_name": "Smith",
+      "specialty": 6
+    }
+  },
+  {
+    "model": "crm.worker",
+    "pk": 3,
+    "fields": {
+      "username": "worker_2",
+      "password": "pbkdf2_sha256$600000$salt$E8Iu1L+vY464UPrp6yqJ7XhB9D79xYJ7Y7Y7Y7Y7Y7Y=",
+      "is_superuser": false,
+      "is_staff": true,
+      "is_active": true,
+      "first_name": "Alex",
+      "last_name": "Doe",
+      "specialty": 6
+    }
+  },
+  {
+    "model": "crm.worker",
+    "pk": 4,
+    "fields": {
+      "username": "worker_3",
+      "password": "pbkdf2_sha256$600000$salt$E8Iu1L+vY464UPrp6yqJ7XhB9D79xYJ7Y7Y7Y7Y7Y7Y=",
+      "is_superuser": false,
+      "is_staff": true,
+      "is_active": true,
+      "first_name": "David",
+      "last_name": "Wilson",
+      "specialty": 5
+    }
+  },
+  {
+    "model": "crm.worker",
+    "pk": 5,
+    "fields": {
+      "username": "worker_4",
+      "password": "pbkdf2_sha256$600000$salt$E8Iu1L+vY464UPrp6yqJ7XhB9D79xYJ7Y7Y7Y7Y7Y7Y=",
+      "is_superuser": false,
+      "is_staff": true,
+      "is_active": true,
+      "first_name": "Michael",
+      "last_name": "Brown",
+      "specialty": 5
+    }
+  },
+  {
+    "model": "crm.worker",
+    "pk": 6,
+    "fields": {
+      "username": "worker_5",
+      "password": "pbkdf2_sha256$600000$salt$E8Iu1L+vY464UPrp6yqJ7XhB9D79xYJ7Y7Y7Y7Y7Y7Y=",
+      "is_superuser": false,
+      "is_staff": true,
+      "is_active": true,
+      "first_name": "Sarah",
+      "last_name": "Miller",
+      "specialty": 5
+    }
+  },
+  {
+    "model": "crm.worker",
+    "pk": 7,
+    "fields": {
+      "username": "worker_6",
+      "password": "pbkdf2_sha256$600000$salt$E8Iu1L+vY464UPrp6yqJ7XhB9D79xYJ7Y7Y7Y7Y7Y7Y=",
+      "is_superuser": false,
+      "is_staff": true,
+      "is_active": true,
+      "first_name": "Chris",
+      "last_name": "Davis",
+      "specialty": 1
+    }
+  },
+  {
+    "model": "crm.worker",
+    "pk": 8,
+    "fields": {
+      "username": "worker_7",
+      "password": "pbkdf2_sha256$600000$salt$E8Iu1L+vY464UPrp6yqJ7XhB9D79xYJ7Y7Y7Y7Y7Y7Y=",
+      "is_superuser": false,
+      "is_staff": true,
+      "is_active": true,
+      "first_name": "Kevin",
+      "last_name": "Garcia",
+      "specialty": 3
+    }
+  },
+  {
+    "model": "crm.worker",
+    "pk": 9,
+    "fields": {
+      "username": "worker_8",
+      "password": "pbkdf2_sha256$600000$salt$E8Iu1L+vY464UPrp6yqJ7XhB9D79xYJ7Y7Y7Y7Y7Y7Y=",
+      "is_superuser": false,
+      "is_staff": true,
+      "is_active": true,
+      "first_name": "Daniel",
+      "last_name": "Rodriguez",
+      "specialty": 1
+    }
+  },
+  {
+    "model": "crm.worker",
+    "pk": 10,
+    "fields": {
+      "username": "worker_9",
+      "password": "pbkdf2_sha256$600000$salt$E8Iu1L+vY464UPrp6yqJ7XhB9D79xYJ7Y7Y7Y7Y7Y7Y=",
+      "is_superuser": false,
+      "is_staff": true,
+      "is_active": true,
+      "first_name": "Robert",
+      "last_name": "Wilson",
+      "specialty": 2
+    }
+  },
+  {
+    "model": "crm.worker",
+    "pk": 11,
+    "fields": {
+      "username": "worker_10",
+      "password": "pbkdf2_sha256$600000$salt$E8Iu1L+vY464UPrp6yqJ7XhB9D79xYJ7Y7Y7Y7Y7Y7Y=",
+      "is_superuser": false,
+      "is_staff": true,
+      "is_active": true,
+      "first_name": "Mark",
+      "last_name": "Anderson",
+      "specialty": 2
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 1,
+    "fields": {
+      "model": "Tesla Model 3",
+      "license_plate": "AO4712HT",
+      "owner_name": "John Brown",
+      "phone_number": "0667081826"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 2,
+    "fields": {
+      "model": "Mercedes C-Class",
+      "license_plate": "AO3507HT",
+      "owner_name": "Chris Smith",
+      "phone_number": "0678547736"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 3,
+    "fields": {
+      "model": "Mercedes C-Class",
+      "license_plate": "AB7293KA",
+      "owner_name": "John Doe",
+      "phone_number": "0674600453"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 4,
+    "fields": {
+      "model": "Mercedes C-Class",
+      "license_plate": "AA3217KA",
+      "owner_name": "Daniel Brown",
+      "phone_number": "0506822912"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 5,
+    "fields": {
+      "model": "Honda Civic",
+      "license_plate": "AA2970CM",
+      "owner_name": "Sarah Miller",
+      "phone_number": "0934631687"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 6,
+    "fields": {
+      "model": "Honda Civic",
+      "license_plate": "AO8337CM",
+      "owner_name": "Mark Smith",
+      "phone_number": "0934708790"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 7,
+    "fields": {
+      "model": "Toyota Camry",
+      "license_plate": "AM6047KI",
+      "owner_name": "Alex Anderson",
+      "phone_number": "0674868053"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 8,
+    "fields": {
+      "model": "Toyota Camry",
+      "license_plate": "AM2185KI",
+      "owner_name": "Kevin Wilson",
+      "phone_number": "0663762189"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 9,
+    "fields": {
+      "model": "Ford F-150",
+      "license_plate": "AH4842KA",
+      "owner_name": "Sarah Smith",
+      "phone_number": "0978730977"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 10,
+    "fields": {
+      "model": "Audi A4",
+      "license_plate": "AB1423KI",
+      "owner_name": "Alex Rodriguez",
+      "phone_number": "0678418392"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 11,
+    "fields": {
+      "model": "Volkswagen Golf",
+      "license_plate": "AH4733KA",
+      "owner_name": "Mark Davis",
+      "phone_number": "0663739526"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 12,
+    "fields": {
+      "model": "Ford F-150",
+      "license_plate": "AE3102KA",
+      "owner_name": "Sarah Rodriguez",
+      "phone_number": "0669586940"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 13,
+    "fields": {
+      "model": "Tesla Model 3",
+      "license_plate": "AE7683KI",
+      "owner_name": "Alex Wilson",
+      "phone_number": "0974002457"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 14,
+    "fields": {
+      "model": "Toyota Camry",
+      "license_plate": "KE4288BK",
+      "owner_name": "Chris Rodriguez",
+      "phone_number": "0673247113"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 15,
+    "fields": {
+      "model": "Volkswagen Golf",
+      "license_plate": "AE5288HT",
+      "owner_name": "Sarah Rodriguez",
+      "phone_number": "0507366391"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 16,
+    "fields": {
+      "model": "BMW X5",
+      "license_plate": "AB1090KI",
+      "owner_name": "Mark Anderson",
+      "phone_number": "0935873648"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 17,
+    "fields": {
+      "model": "Honda Civic",
+      "license_plate": "AO1293KB",
+      "owner_name": "Chris Garcia",
+      "phone_number": "0961887939"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 18,
+    "fields": {
+      "model": "Tesla Model 3",
+      "license_plate": "AO2974KB",
+      "owner_name": "Alex Wilson",
+      "phone_number": "0974673754"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 19,
+    "fields": {
+      "model": "Tesla Model 3",
+      "license_plate": "AO9360CM",
+      "owner_name": "Chris Wilson",
+      "phone_number": "0734472300"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 20,
+    "fields": {
+      "model": "Mercedes C-Class",
+      "license_plate": "BC4213BK",
+      "owner_name": "Mark Wilson",
+      "phone_number": "0934911941"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 21,
+    "fields": {
+      "model": "Toyota Camry",
+      "license_plate": "AO2722LP",
+      "owner_name": "Daniel Smith",
+      "phone_number": "0932943840"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 22,
+    "fields": {
+      "model": "Mercedes C-Class",
+      "license_plate": "KE9687BK",
+      "owner_name": "Robert Davis",
+      "phone_number": "0968488883"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 23,
+    "fields": {
+      "model": "Tesla Model 3",
+      "license_plate": "AH5833BK",
+      "owner_name": "Sarah Davis",
+      "phone_number": "0738363064"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 24,
+    "fields": {
+      "model": "Audi A4",
+      "license_plate": "AM7602KA",
+      "owner_name": "David Rodriguez",
+      "phone_number": "0664968232"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 25,
+    "fields": {
+      "model": "Mercedes C-Class",
+      "license_plate": "AB1263BK",
+      "owner_name": "Michael Wilson",
+      "phone_number": "0504948239"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 26,
+    "fields": {
+      "model": "BMW X5",
+      "license_plate": "BC7973KB",
+      "owner_name": "David Wilson",
+      "phone_number": "0678544668"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 27,
+    "fields": {
+      "model": "Mercedes C-Class",
+      "license_plate": "AB8444CM",
+      "owner_name": "Kevin Smith",
+      "phone_number": "0967917921"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 28,
+    "fields": {
+      "model": "Volkswagen Golf",
+      "license_plate": "AM4066KB",
+      "owner_name": "Mark Wilson",
+      "phone_number": "0638004115"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 29,
+    "fields": {
+      "model": "Toyota Camry",
+      "license_plate": "AA7717BK",
+      "owner_name": "Mark Wilson",
+      "phone_number": "0974307415"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 30,
+    "fields": {
+      "model": "Audi A4",
+      "license_plate": "AH3227CM",
+      "owner_name": "Kevin Smith",
+      "phone_number": "0935638204"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 31,
+    "fields": {
+      "model": "Honda Civic",
+      "license_plate": "AM6896KI",
+      "owner_name": "Chris Anderson",
+      "phone_number": "0936728771"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 32,
+    "fields": {
+      "model": "Ford F-150",
+      "license_plate": "AO1130BK",
+      "owner_name": "John Wilson",
+      "phone_number": "0932898964"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 33,
+    "fields": {
+      "model": "BMW X5",
+      "license_plate": "AM9191LP",
+      "owner_name": "Sarah Garcia",
+      "phone_number": "0736397992"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 34,
+    "fields": {
+      "model": "Audi A4",
+      "license_plate": "BC8449BK",
+      "owner_name": "Alex Miller",
+      "phone_number": "0977439355"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 35,
+    "fields": {
+      "model": "Mercedes C-Class",
+      "license_plate": "AA2088KA",
+      "owner_name": "Sarah Davis",
+      "phone_number": "0734959385"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 36,
+    "fields": {
+      "model": "Honda Civic",
+      "license_plate": "AE6051HT",
+      "owner_name": "Daniel Wilson",
+      "phone_number": "0633751974"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 37,
+    "fields": {
+      "model": "Audi A4",
+      "license_plate": "BC4299HT",
+      "owner_name": "Sarah Doe",
+      "phone_number": "0634381890"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 38,
+    "fields": {
+      "model": "Toyota Camry",
+      "license_plate": "AM7184KI",
+      "owner_name": "Mark Anderson",
+      "phone_number": "0631868540"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 39,
+    "fields": {
+      "model": "Tesla Model 3",
+      "license_plate": "AA7511KA",
+      "owner_name": "Alex Miller",
+      "phone_number": "0736139291"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 40,
+    "fields": {
+      "model": "Ford F-150",
+      "license_plate": "AA8676LP",
+      "owner_name": "Kevin Miller",
+      "phone_number": "0974580575"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 41,
+    "fields": {
+      "model": "BMW X5",
+      "license_plate": "AE2348BK",
+      "owner_name": "Chris Brown",
+      "phone_number": "0732923847"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 42,
+    "fields": {
+      "model": "Volkswagen Golf",
+      "license_plate": "AH8292HT",
+      "owner_name": "Chris Davis",
+      "phone_number": "0933325756"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 43,
+    "fields": {
+      "model": "Honda Civic",
+      "license_plate": "AH2552BK",
+      "owner_name": "Robert Garcia",
+      "phone_number": "0637284320"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 44,
+    "fields": {
+      "model": "BMW X5",
+      "license_plate": "AA1003BK",
+      "owner_name": "Sarah Brown",
+      "phone_number": "0664964621"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 45,
+    "fields": {
+      "model": "Tesla Model 3",
+      "license_plate": "KE3730HT",
+      "owner_name": "John Davis",
+      "phone_number": "0501391843"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 46,
+    "fields": {
+      "model": "Honda Civic",
+      "license_plate": "BC2694KB",
+      "owner_name": "Kevin Davis",
+      "phone_number": "0735147125"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 47,
+    "fields": {
+      "model": "Honda Civic",
+      "license_plate": "AB7957CM",
+      "owner_name": "Sarah Wilson",
+      "phone_number": "0669810228"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 48,
+    "fields": {
+      "model": "Honda Civic",
+      "license_plate": "AO3178CM",
+      "owner_name": "Chris Garcia",
+      "phone_number": "0506517528"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 49,
+    "fields": {
+      "model": "Honda Civic",
+      "license_plate": "BC7571KI",
+      "owner_name": "Chris Doe",
+      "phone_number": "0675667223"
+    }
+  },
+  {
+    "model": "crm.client",
+    "pk": 50,
+    "fields": {
+      "model": "Audi A4",
+      "license_plate": "AO9772LP",
+      "owner_name": "Sarah Anderson",
+      "phone_number": "0672064406"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 1,
+    "fields": {
+      "category": 4,
+      "client": 37,
+      "description": "Strange noise check",
+      "is_completed": false,
+      "performers": [
+        7
+      ],
+      "norm_hours": 6.4,
+      "date": "2026-05-08T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 2,
+    "fields": {
+      "category": 3,
+      "client": 24,
+      "description": "Performance upgrade",
+      "is_completed": true,
+      "performers": [
+        4
+      ],
+      "norm_hours": 5.8,
+      "date": "2026-05-03T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 3,
+    "fields": {
+      "category": 4,
+      "client": 39,
+      "description": "Strange noise check",
+      "is_completed": true,
+      "performers": [
+        1
+      ],
+      "norm_hours": 7.1,
+      "date": "2026-05-05T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 4,
+    "fields": {
+      "category": 5,
+      "client": 8,
+      "description": "Strange noise check",
+      "is_completed": true,
+      "performers": [
+        6
+      ],
+      "norm_hours": 3.1,
+      "date": "2026-05-04T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 5,
+    "fields": {
+      "category": 6,
+      "client": 19,
+      "description": "Performance upgrade",
+      "is_completed": true,
+      "performers": [
+        8
+      ],
+      "norm_hours": 2.2,
+      "date": "2026-05-08T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 6,
+    "fields": {
+      "category": 6,
+      "client": 35,
+      "description": "Performance upgrade",
+      "is_completed": true,
+      "performers": [
+        5
+      ],
+      "norm_hours": 6.7,
+      "date": "2026-05-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 7,
+    "fields": {
+      "category": 4,
+      "client": 7,
+      "description": "Routine maintenance",
+      "is_completed": true,
+      "performers": [
+        7
+      ],
+      "norm_hours": 1.4,
+      "date": "2026-05-10T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 8,
+    "fields": {
+      "category": 4,
+      "client": 33,
+      "description": "Strange noise check",
+      "is_completed": true,
+      "performers": [
+        6
+      ],
+      "norm_hours": 6.9,
+      "date": "2026-05-09T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 9,
+    "fields": {
+      "category": 1,
+      "client": 2,
+      "description": "Routine maintenance",
+      "is_completed": true,
+      "performers": [
+        6
+      ],
+      "norm_hours": 6.0,
+      "date": "2026-05-08T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 10,
+    "fields": {
+      "category": 1,
+      "client": 45,
+      "description": "Strange noise check",
+      "is_completed": true,
+      "performers": [
+        11
+      ],
+      "norm_hours": 6.1,
+      "date": "2026-05-10T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 11,
+    "fields": {
+      "category": 5,
+      "client": 50,
+      "description": "Emergency repair",
+      "is_completed": true,
+      "performers": [
+        9
+      ],
+      "norm_hours": 6.7,
+      "date": "2026-05-04T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 12,
+    "fields": {
+      "category": 1,
+      "client": 6,
+      "description": "Emergency repair",
+      "is_completed": false,
+      "performers": [
+        5
+      ],
+      "norm_hours": 1.9,
+      "date": "2026-05-06T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 13,
+    "fields": {
+      "category": 4,
+      "client": 9,
+      "description": "Routine maintenance",
+      "is_completed": false,
+      "performers": [
+        1
+      ],
+      "norm_hours": 7.6,
+      "date": "2026-05-06T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 14,
+    "fields": {
+      "category": 2,
+      "client": 23,
+      "description": "Performance upgrade",
+      "is_completed": true,
+      "performers": [
+        5
+      ],
+      "norm_hours": 4.7,
+      "date": "2026-05-04T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 15,
+    "fields": {
+      "category": 1,
+      "client": 27,
+      "description": "Emergency repair",
+      "is_completed": false,
+      "performers": [
+        10
+      ],
+      "norm_hours": 2.0,
+      "date": "2026-05-08T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 16,
+    "fields": {
+      "category": 6,
+      "client": 33,
+      "description": "Strange noise check",
+      "is_completed": false,
+      "performers": [
+        5
+      ],
+      "norm_hours": 4.4,
+      "date": "2026-05-09T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 17,
+    "fields": {
+      "category": 2,
+      "client": 28,
+      "description": "Emergency repair",
+      "is_completed": false,
+      "performers": [
+        3
+      ],
+      "norm_hours": 1.0,
+      "date": "2026-05-04T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 18,
+    "fields": {
+      "category": 1,
+      "client": 50,
+      "description": "Strange noise check",
+      "is_completed": false,
+      "performers": [
+        11
+      ],
+      "norm_hours": 5.6,
+      "date": "2026-05-07T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 19,
+    "fields": {
+      "category": 3,
+      "client": 11,
+      "description": "Strange noise check",
+      "is_completed": true,
+      "performers": [
+        8
+      ],
+      "norm_hours": 3.9,
+      "date": "2026-05-02T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 20,
+    "fields": {
+      "category": 1,
+      "client": 17,
+      "description": "Routine maintenance",
+      "is_completed": false,
+      "performers": [
+        3
+      ],
+      "norm_hours": 6.3,
+      "date": "2026-05-03T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 21,
+    "fields": {
+      "category": 4,
+      "client": 5,
+      "description": "Strange noise check",
+      "is_completed": true,
+      "performers": [
+        4
+      ],
+      "norm_hours": 4.5,
+      "date": "2026-05-07T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 22,
+    "fields": {
+      "category": 5,
+      "client": 38,
+      "description": "Performance upgrade",
+      "is_completed": true,
+      "performers": [
+        6
+      ],
+      "norm_hours": 5.8,
+      "date": "2026-05-10T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 23,
+    "fields": {
+      "category": 4,
+      "client": 13,
+      "description": "Emergency repair",
+      "is_completed": true,
+      "performers": [
+        4
+      ],
+      "norm_hours": 1.2,
+      "date": "2026-05-11T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 24,
+    "fields": {
+      "category": 4,
+      "client": 10,
+      "description": "Strange noise check",
+      "is_completed": true,
+      "performers": [
+        5
+      ],
+      "norm_hours": 6.8,
+      "date": "2026-05-03T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 25,
+    "fields": {
+      "category": 3,
+      "client": 43,
+      "description": "Strange noise check",
+      "is_completed": false,
+      "performers": [
+        7
+      ],
+      "norm_hours": 6.2,
+      "date": "2026-05-04T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 26,
+    "fields": {
+      "category": 5,
+      "client": 33,
+      "description": "Routine maintenance",
+      "is_completed": false,
+      "performers": [
+        3
+      ],
+      "norm_hours": 5.1,
+      "date": "2026-05-11T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 27,
+    "fields": {
+      "category": 1,
+      "client": 7,
+      "description": "Strange noise check",
+      "is_completed": false,
+      "performers": [
+        4
+      ],
+      "norm_hours": 4.4,
+      "date": "2026-05-02T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 28,
+    "fields": {
+      "category": 2,
+      "client": 40,
+      "description": "Strange noise check",
+      "is_completed": false,
+      "performers": [
+        1
+      ],
+      "norm_hours": 7.1,
+      "date": "2026-05-07T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 29,
+    "fields": {
+      "category": 6,
+      "client": 26,
+      "description": "Routine maintenance",
+      "is_completed": false,
+      "performers": [
+        8
+      ],
+      "norm_hours": 7.8,
+      "date": "2026-05-03T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 30,
+    "fields": {
+      "category": 4,
+      "client": 18,
+      "description": "Performance upgrade",
+      "is_completed": false,
+      "performers": [
+        2
+      ],
+      "norm_hours": 4.3,
+      "date": "2026-05-12T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 31,
+    "fields": {
+      "category": 2,
+      "client": 2,
+      "description": "Routine maintenance",
+      "is_completed": true,
+      "performers": [
+        8
+      ],
+      "norm_hours": 5.7,
+      "date": "2026-05-11T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 32,
+    "fields": {
+      "category": 3,
+      "client": 42,
+      "description": "Strange noise check",
+      "is_completed": false,
+      "performers": [
+        9
+      ],
+      "norm_hours": 3.0,
+      "date": "2026-05-09T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 33,
+    "fields": {
+      "category": 4,
+      "client": 38,
+      "description": "Performance upgrade",
+      "is_completed": false,
+      "performers": [
+        7
+      ],
+      "norm_hours": 5.7,
+      "date": "2026-05-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 34,
+    "fields": {
+      "category": 3,
+      "client": 31,
+      "description": "Performance upgrade",
+      "is_completed": false,
+      "performers": [
+        11
+      ],
+      "norm_hours": 4.2,
+      "date": "2026-05-10T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 35,
+    "fields": {
+      "category": 6,
+      "client": 48,
+      "description": "Emergency repair",
+      "is_completed": false,
+      "performers": [
+        7
+      ],
+      "norm_hours": 4.5,
+      "date": "2026-05-03T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 36,
+    "fields": {
+      "category": 6,
+      "client": 25,
+      "description": "Routine maintenance",
+      "is_completed": true,
+      "performers": [
+        4
+      ],
+      "norm_hours": 3.4,
+      "date": "2026-05-05T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 37,
+    "fields": {
+      "category": 3,
+      "client": 14,
+      "description": "Emergency repair",
+      "is_completed": false,
+      "performers": [
+        4
+      ],
+      "norm_hours": 3.9,
+      "date": "2026-05-04T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 38,
+    "fields": {
+      "category": 3,
+      "client": 49,
+      "description": "Routine maintenance",
+      "is_completed": true,
+      "performers": [
+        8
+      ],
+      "norm_hours": 2.6,
+      "date": "2026-05-03T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 39,
+    "fields": {
+      "category": 1,
+      "client": 4,
+      "description": "Performance upgrade",
+      "is_completed": false,
+      "performers": [
+        8
+      ],
+      "norm_hours": 2.3,
+      "date": "2026-05-02T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 40,
+    "fields": {
+      "category": 1,
+      "client": 19,
+      "description": "Emergency repair",
+      "is_completed": false,
+      "performers": [
+        9
+      ],
+      "norm_hours": 3.9,
+      "date": "2026-05-10T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 41,
+    "fields": {
+      "category": 1,
+      "client": 14,
+      "description": "Performance upgrade",
+      "is_completed": false,
+      "performers": [
+        4
+      ],
+      "norm_hours": 6.5,
+      "date": "2026-05-12T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 42,
+    "fields": {
+      "category": 1,
+      "client": 37,
+      "description": "Routine maintenance",
+      "is_completed": true,
+      "performers": [
+        11
+      ],
+      "norm_hours": 2.7,
+      "date": "2026-05-07T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 43,
+    "fields": {
+      "category": 6,
+      "client": 47,
+      "description": "Emergency repair",
+      "is_completed": false,
+      "performers": [
+        9
+      ],
+      "norm_hours": 1.8,
+      "date": "2026-05-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 44,
+    "fields": {
+      "category": 5,
+      "client": 45,
+      "description": "Routine maintenance",
+      "is_completed": true,
+      "performers": [
+        7
+      ],
+      "norm_hours": 5.6,
+      "date": "2026-05-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 45,
+    "fields": {
+      "category": 3,
+      "client": 14,
+      "description": "Strange noise check",
+      "is_completed": true,
+      "performers": [
+        5
+      ],
+      "norm_hours": 1.4,
+      "date": "2026-05-02T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 46,
+    "fields": {
+      "category": 6,
+      "client": 10,
+      "description": "Strange noise check",
+      "is_completed": false,
+      "performers": [
+        7
+      ],
+      "norm_hours": 4.2,
+      "date": "2026-05-02T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 47,
+    "fields": {
+      "category": 2,
+      "client": 28,
+      "description": "Performance upgrade",
+      "is_completed": true,
+      "performers": [
+        4
+      ],
+      "norm_hours": 4.3,
+      "date": "2026-05-11T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 48,
+    "fields": {
+      "category": 1,
+      "client": 13,
+      "description": "Emergency repair",
+      "is_completed": false,
+      "performers": [
+        9
+      ],
+      "norm_hours": 8.0,
+      "date": "2026-05-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 49,
+    "fields": {
+      "category": 5,
+      "client": 26,
+      "description": "Routine maintenance",
+      "is_completed": false,
+      "performers": [
+        4
+      ],
+      "norm_hours": 7.9,
+      "date": "2026-05-10T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 50,
+    "fields": {
+      "category": 1,
+      "client": 15,
+      "description": "Performance upgrade",
+      "is_completed": false,
+      "performers": [
+        6
+      ],
+      "norm_hours": 5.7,
+      "date": "2026-05-07T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 51,
+    "fields": {
+      "category": 1,
+      "client": 38,
+      "description": "Emergency repair",
+      "is_completed": false,
+      "performers": [
+        7
+      ],
+      "norm_hours": 6.5,
+      "date": "2026-05-09T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 52,
+    "fields": {
+      "category": 6,
+      "client": 41,
+      "description": "Emergency repair",
+      "is_completed": false,
+      "performers": [
+        3
+      ],
+      "norm_hours": 3.0,
+      "date": "2026-05-11T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 53,
+    "fields": {
+      "category": 5,
+      "client": 1,
+      "description": "Strange noise check",
+      "is_completed": false,
+      "performers": [
+        1
+      ],
+      "norm_hours": 2.1,
+      "date": "2026-05-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 54,
+    "fields": {
+      "category": 5,
+      "client": 29,
+      "description": "Performance upgrade",
+      "is_completed": false,
+      "performers": [
+        6
+      ],
+      "norm_hours": 4.2,
+      "date": "2026-05-05T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 55,
+    "fields": {
+      "category": 3,
+      "client": 13,
+      "description": "Strange noise check",
+      "is_completed": true,
+      "performers": [
+        2
+      ],
+      "norm_hours": 2.8,
+      "date": "2026-05-08T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 56,
+    "fields": {
+      "category": 5,
+      "client": 28,
+      "description": "Emergency repair",
+      "is_completed": false,
+      "performers": [
+        9
+      ],
+      "norm_hours": 5.5,
+      "date": "2026-05-08T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 57,
+    "fields": {
+      "category": 5,
+      "client": 30,
+      "description": "Routine maintenance",
+      "is_completed": false,
+      "performers": [
+        1
+      ],
+      "norm_hours": 2.7,
+      "date": "2026-05-09T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 58,
+    "fields": {
+      "category": 3,
+      "client": 18,
+      "description": "Routine maintenance",
+      "is_completed": true,
+      "performers": [
+        4
+      ],
+      "norm_hours": 2.5,
+      "date": "2026-05-05T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 59,
+    "fields": {
+      "category": 2,
+      "client": 27,
+      "description": "Performance upgrade",
+      "is_completed": false,
+      "performers": [
+        1
+      ],
+      "norm_hours": 2.8,
+      "date": "2026-05-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 60,
+    "fields": {
+      "category": 1,
+      "client": 32,
+      "description": "Emergency repair",
+      "is_completed": false,
+      "performers": [
+        10
+      ],
+      "norm_hours": 5.0,
+      "date": "2026-05-12T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 61,
+    "fields": {
+      "category": 6,
+      "client": 43,
+      "description": "Performance upgrade",
+      "is_completed": false,
+      "performers": [
+        2
+      ],
+      "norm_hours": 7.9,
+      "date": "2026-05-12T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 62,
+    "fields": {
+      "category": 6,
+      "client": 10,
+      "description": "Performance upgrade",
+      "is_completed": false,
+      "performers": [
+        1
+      ],
+      "norm_hours": 2.7,
+      "date": "2026-05-09T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 63,
+    "fields": {
+      "category": 4,
+      "client": 27,
+      "description": "Strange noise check",
+      "is_completed": true,
+      "performers": [
+        1
+      ],
+      "norm_hours": 2.3,
+      "date": "2026-05-07T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 64,
+    "fields": {
+      "category": 6,
+      "client": 12,
+      "description": "Performance upgrade",
+      "is_completed": true,
+      "performers": [
+        6
+      ],
+      "norm_hours": 7.6,
+      "date": "2026-05-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 65,
+    "fields": {
+      "category": 6,
+      "client": 4,
+      "description": "Emergency repair",
+      "is_completed": true,
+      "performers": [
+        1
+      ],
+      "norm_hours": 4.8,
+      "date": "2026-05-06T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 66,
+    "fields": {
+      "category": 6,
+      "client": 39,
+      "description": "Strange noise check",
+      "is_completed": true,
+      "performers": [
+        2
+      ],
+      "norm_hours": 1.6,
+      "date": "2026-05-09T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 67,
+    "fields": {
+      "category": 5,
+      "client": 28,
+      "description": "Strange noise check",
+      "is_completed": false,
+      "performers": [
+        5
+      ],
+      "norm_hours": 5.5,
+      "date": "2026-05-12T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 68,
+    "fields": {
+      "category": 5,
+      "client": 1,
+      "description": "Strange noise check",
+      "is_completed": false,
+      "performers": [
+        2
+      ],
+      "norm_hours": 1.9,
+      "date": "2026-05-02T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 69,
+    "fields": {
+      "category": 5,
+      "client": 11,
+      "description": "Emergency repair",
+      "is_completed": false,
+      "performers": [
+        9
+      ],
+      "norm_hours": 4.7,
+      "date": "2026-05-03T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 70,
+    "fields": {
+      "category": 6,
+      "client": 6,
+      "description": "Emergency repair",
+      "is_completed": false,
+      "performers": [
+        3
+      ],
+      "norm_hours": 7.5,
+      "date": "2026-05-05T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 71,
+    "fields": {
+      "category": 3,
+      "client": 37,
+      "description": "Performance upgrade",
+      "is_completed": true,
+      "performers": [
+        8
+      ],
+      "norm_hours": 3.8,
+      "date": "2026-05-07T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 72,
+    "fields": {
+      "category": 2,
+      "client": 29,
+      "description": "Emergency repair",
+      "is_completed": false,
+      "performers": [
+        11
+      ],
+      "norm_hours": 6.9,
+      "date": "2026-05-03T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 73,
+    "fields": {
+      "category": 3,
+      "client": 37,
+      "description": "Routine maintenance",
+      "is_completed": false,
+      "performers": [
+        9
+      ],
+      "norm_hours": 6.7,
+      "date": "2026-05-04T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 74,
+    "fields": {
+      "category": 6,
+      "client": 1,
+      "description": "Performance upgrade",
+      "is_completed": false,
+      "performers": [
+        3
+      ],
+      "norm_hours": 3.2,
+      "date": "2026-05-06T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 75,
+    "fields": {
+      "category": 4,
+      "client": 46,
+      "description": "Routine maintenance",
+      "is_completed": true,
+      "performers": [
+        5
+      ],
+      "norm_hours": 2.4,
+      "date": "2026-05-02T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 76,
+    "fields": {
+      "category": 6,
+      "client": 27,
+      "description": "Strange noise check",
+      "is_completed": true,
+      "performers": [
+        5
+      ],
+      "norm_hours": 1.3,
+      "date": "2026-05-06T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 77,
+    "fields": {
+      "category": 3,
+      "client": 27,
+      "description": "Performance upgrade",
+      "is_completed": true,
+      "performers": [
+        4
+      ],
+      "norm_hours": 5.2,
+      "date": "2026-05-04T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 78,
+    "fields": {
+      "category": 5,
+      "client": 39,
+      "description": "Performance upgrade",
+      "is_completed": false,
+      "performers": [
+        1
+      ],
+      "norm_hours": 2.7,
+      "date": "2026-05-04T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 79,
+    "fields": {
+      "category": 3,
+      "client": 12,
+      "description": "Performance upgrade",
+      "is_completed": true,
+      "performers": [
+        4
+      ],
+      "norm_hours": 3.7,
+      "date": "2026-05-08T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 80,
+    "fields": {
+      "category": 4,
+      "client": 44,
+      "description": "Routine maintenance",
+      "is_completed": true,
+      "performers": [
+        10
+      ],
+      "norm_hours": 2.0,
+      "date": "2026-05-08T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 81,
+    "fields": {
+      "category": 5,
+      "client": 3,
+      "description": "Performance upgrade",
+      "is_completed": false,
+      "performers": [
+        3
+      ],
+      "norm_hours": 1.8,
+      "date": "2026-05-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 82,
+    "fields": {
+      "category": 3,
+      "client": 23,
+      "description": "Strange noise check",
+      "is_completed": false,
+      "performers": [
+        4
+      ],
+      "norm_hours": 4.3,
+      "date": "2026-05-06T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 83,
+    "fields": {
+      "category": 6,
+      "client": 3,
+      "description": "Strange noise check",
+      "is_completed": false,
+      "performers": [
+        8
+      ],
+      "norm_hours": 1.5,
+      "date": "2026-05-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 84,
+    "fields": {
+      "category": 5,
+      "client": 23,
+      "description": "Emergency repair",
+      "is_completed": true,
+      "performers": [
+        5
+      ],
+      "norm_hours": 6.1,
+      "date": "2026-05-04T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 85,
+    "fields": {
+      "category": 6,
+      "client": 46,
+      "description": "Routine maintenance",
+      "is_completed": false,
+      "performers": [
+        2
+      ],
+      "norm_hours": 5.4,
+      "date": "2026-05-08T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 86,
+    "fields": {
+      "category": 5,
+      "client": 16,
+      "description": "Routine maintenance",
+      "is_completed": true,
+      "performers": [
+        5
+      ],
+      "norm_hours": 5.7,
+      "date": "2026-05-10T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 87,
+    "fields": {
+      "category": 2,
+      "client": 23,
+      "description": "Routine maintenance",
+      "is_completed": false,
+      "performers": [
+        9
+      ],
+      "norm_hours": 1.6,
+      "date": "2026-05-08T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 88,
+    "fields": {
+      "category": 4,
+      "client": 20,
+      "description": "Strange noise check",
+      "is_completed": false,
+      "performers": [
+        6
+      ],
+      "norm_hours": 6.1,
+      "date": "2026-05-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 89,
+    "fields": {
+      "category": 4,
+      "client": 45,
+      "description": "Emergency repair",
+      "is_completed": false,
+      "performers": [
+        6
+      ],
+      "norm_hours": 7.6,
+      "date": "2026-05-07T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 90,
+    "fields": {
+      "category": 5,
+      "client": 1,
+      "description": "Routine maintenance",
+      "is_completed": false,
+      "performers": [
+        9
+      ],
+      "norm_hours": 3.1,
+      "date": "2026-05-12T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 91,
+    "fields": {
+      "category": 4,
+      "client": 11,
+      "description": "Performance upgrade",
+      "is_completed": false,
+      "performers": [
+        10
+      ],
+      "norm_hours": 8.0,
+      "date": "2026-05-02T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 92,
+    "fields": {
+      "category": 6,
+      "client": 34,
+      "description": "Performance upgrade",
+      "is_completed": false,
+      "performers": [
+        10
+      ],
+      "norm_hours": 6.3,
+      "date": "2026-05-06T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 93,
+    "fields": {
+      "category": 3,
+      "client": 13,
+      "description": "Emergency repair",
+      "is_completed": true,
+      "performers": [
+        3
+      ],
+      "norm_hours": 4.6,
+      "date": "2026-05-04T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 94,
+    "fields": {
+      "category": 3,
+      "client": 6,
+      "description": "Routine maintenance",
+      "is_completed": false,
+      "performers": [
+        8
+      ],
+      "norm_hours": 4.8,
+      "date": "2026-05-12T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 95,
+    "fields": {
+      "category": 6,
+      "client": 5,
+      "description": "Routine maintenance",
+      "is_completed": false,
+      "performers": [
+        7
+      ],
+      "norm_hours": 2.4,
+      "date": "2026-05-03T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 96,
+    "fields": {
+      "category": 4,
+      "client": 27,
+      "description": "Routine maintenance",
+      "is_completed": false,
+      "performers": [
+        9
+      ],
+      "norm_hours": 2.8,
+      "date": "2026-05-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 97,
+    "fields": {
+      "category": 2,
+      "client": 6,
+      "description": "Emergency repair",
+      "is_completed": false,
+      "performers": [
+        1
+      ],
+      "norm_hours": 7.7,
+      "date": "2026-05-09T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 98,
+    "fields": {
+      "category": 3,
+      "client": 15,
+      "description": "Emergency repair",
+      "is_completed": false,
+      "performers": [
+        10
+      ],
+      "norm_hours": 7.3,
+      "date": "2026-05-10T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 99,
+    "fields": {
+      "category": 4,
+      "client": 29,
+      "description": "Performance upgrade",
+      "is_completed": false,
+      "performers": [
+        4
+      ],
+      "norm_hours": 6.8,
+      "date": "2026-05-09T12:00:00Z"
+    }
+  },
+  {
+    "model": "crm.order",
+    "pk": 100,
+    "fields": {
+      "category": 5,
+      "client": 34,
+      "description": "Routine maintenance",
+      "is_completed": false,
+      "performers": [
+        4
+      ],
+      "norm_hours": 2.2,
+      "date": "2026-05-04T12:00:00Z"
+    }
+  }
+]

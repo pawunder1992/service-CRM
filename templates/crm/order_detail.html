@@ -1,0 +1,103 @@
+{% extends "registration/../base.html" %}
+{% load static %}
+
+{% block content %}
+  <div class="container-fluid py-4">
+    <div class="row">
+
+      <div class="col-12 col-xl-8">
+        <div class="card h-100">
+          <div class="card-header pb-0 p-3">
+            <div class="d-flex justify-content-between">
+              <h6 class="mb-0">Order № {{ object.id }}</h6>
+              <span
+                  class="badge badge-sm {% if object.is_completed %}bg-gradient-success{% else %}bg-gradient-warning{% endif %}">
+              {% if object.is_completed %}Complete{% else %}in process{% endif %}
+            </span>
+            </div>
+            <p class="text-muted text-xs mt-1">Create at: {{ object.date|date:"d.m.Y H:i" }}</p>
+          </div>
+          <div class="card-body p-3">
+            <h6 class="text-uppercase text-body text-xs font-weight-bolder">Technical details</h6>
+            <ul class="list-group">
+              <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Category:</strong>
+                &nbsp; {{ object.category }}</li>
+              <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Car:</strong>
+                &nbsp; {{ object.client.model }}</li>
+              <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">License plate:</strong> &nbsp;
+                <span class="badge bg-light text-dark">{{ object.client.license_plate }}</span></li>
+              <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Total:</strong> &nbsp; <span
+                  class="text-success font-weight-bold">{{ object.total_price }} uah</span></li>
+            </ul>
+
+            <h6 class="text-uppercase text-body text-xs font-weight-bolder mt-4">Description of the problem / works</h6>
+            <div class="bg-light border-radius-lg p-3">
+              <p class="text-sm mb-0">
+                {{ object.description|default:"Опис не вказано" }}
+              </p>
+            </div>
+
+            <hr class="horizontal gray-light my-4">
+
+            <div class="d-flex gap-2">
+              {% if user in object.performers.all or user.is_superuser %}
+                <a href="{% url 'crm:order-update' pk=object.id %}" class="btn bg-gradient-primary mb-0">Edit</a>
+                <a href="{% url 'crm:order-delete' pk=object.id %}" class="btn btn-outline-danger mb-0">Delete</a>
+              {% endif %}
+              <a href="{% url 'crm:order-list' %}" class="btn btn-link text-dark mb-0">Back</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-xl-4">
+        <div class="row">
+
+          <div class="col-12 mb-4">
+            <div class="card">
+              <div class="card-body p-3">
+                <h6 class="text-uppercase text-body text-xs font-weight-bolder">Client</h6>
+                <div class="d-flex align-items-center">
+                  <div class="icon icon-shape bg-gradient-dark shadow text-center border-radius-md me-3">
+                    <i class="ni ni-single-02 text-white opacity-10"></i>
+                  </div>
+                  <div>
+                    <h6 class="mb-0 text-sm">{{ object.client.owner_name }}</h6>
+                    <p class="text-xs mb-0">{{ object.client.phone_number }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="card h-100">
+              <div class="card-header pb-0 p-3">
+                <h6 class="mb-0">Team (Performers)</h6>
+              </div>
+              <div class="card-body p-3">
+                <ul class="list-group">
+                  {% for performer in object.performers.all %}
+                    <li class="list-group-item border-0 d-flex align-items-center px-0 mb-2">
+                      <div class="avatar avatar-sm me-3">
+                        <img src="{% static 'assets/img/team-2.jpg' %}" alt="user" class="border-radius-lg shadow">
+                      </div>
+                      <div class="d-flex align-items-start flex-column justify-content-center">
+                        <h6 class="mb-0 text-sm">{{ performer.first_name }} {{ performer.last_name }}</h6>
+                        <p class="mb-0 text-xs">Worker</p>
+                      </div>
+                    </li>
+                  {% empty %}
+                    <li class="list-group-item border-0 text-center text-muted py-3">No worker</li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+{% endblock %}
