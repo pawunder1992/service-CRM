@@ -60,6 +60,10 @@ class Order(models.Model):
     def get_absolute_url(self):
         return reverse("crm:order-detail", kwargs={"pk": self.pk})
 
+    def __str__(self):
+        status = "Done" if self.is_completed else "In Progress"
+        return f"Order #{self.pk}: {self.category} for {self.client} ({status})"
+
 
 class Client(models.Model):
     model = models.CharField(max_length=100)

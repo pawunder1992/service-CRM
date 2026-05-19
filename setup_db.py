@@ -1,6 +1,5 @@
 import os
 import django
-from django.core.management import call_command
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'service_CRM.settings')
 django.setup()
@@ -10,31 +9,8 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
-def setup_everything():
-    print("🚀 Starting full database automation...")
-
-    try:
-        print("1. Creating migration files (makemigrations)...")
-        call_command('makemigrations', 'crm')
-    except Exception as e:
-        print(f"❌ Error during makemigrations: {e}")
-        return
-
-    try:
-        print("2. Running migrations (migrate)...")
-        call_command('migrate')
-    except Exception as e:
-        print(f"❌ Error during migrate: {e}")
-        return
-
-    try:
-        if os.path.exists('data.json'):
-            print("3. Loading data from data.json...")
-            call_command('loaddata', 'data.json')
-        else:
-            print("⚠️ Warning: data.json not found. Skipping data load.")
-    except Exception as e:
-        print(f"❌ Error during loaddata: {e}")
+def setup_passwords():
+    print("🚀 Starting setting up passwords...")
 
     password = "password123"
     accounts = [
@@ -52,8 +28,6 @@ def setup_everything():
         except User.DoesNotExist:
             print(f"   ❌ User '{account['username']}' not found in database. Check your data.json.")
 
-    print("\n✨ Everything is ready! You can now run: python manage.py runserver")
-
 
 if __name__ == "__main__":
-    setup_everything()
+    setup_passwords()

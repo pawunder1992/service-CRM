@@ -19,17 +19,23 @@ Order Management:
 Track repair categories, assigned performers, and completion status with built-in pagination.
 
 🛠️ Quick Start
-Install dependencies:
 
-`pip install -r requirements.txt`
+1. Create a virtual environment (do not install packages globally in your system):
+* **Windows:** `python -m venv .venv`
+* **macOS/Linux:** `python3 -m venv .venv`
 
-Run the Automation Script:
-This script handles migrations, loads the data fixture, and sets up user passwords.
+2. Activate the environment and install only the core packages needed to run the project:
+* **Windows (Cmd):** `.venv\Scripts\activate.bat && pip install django`
+* **Windows (PowerShell):** `.venv\Scripts\activate.ps1; pip install django`
+* **macOS/Linux:** `source .venv/bin/activate && pip install django`
 
-`python setup_db.py`
+3. Set up the database and migrations:
+`python manage.py makemigrations`
+`python manage.py migrate`
+`python manage.py loaddata data.json`
+`python create_password.py`
 
-Start the Server:
-
+4. Start the Server:
 `python manage.py runserver`
 
 🔑 Access Credentials

@@ -27,29 +27,34 @@ from django.db.models import Q
 from .models import Order, Worker
 
 
+from django.db.models import F, Sum
+from django.utils import timezone
+
+
 class IndexView(LoginRequiredMixin, TemplateView):
     template_name = "crm/index.html"
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        sum_all = sum(
-            order.total_price for order in Order.objects.filter(is_completed=True)
+        sum_all_res = Order.objects.filter(is_completed=True).aggregate(
+            total=Sum(F("norm_hours") * F("category__hour_cost"))
         )
+
+        sum_all = round(sum_all_res["total"], 2)
         current_month = timezone.now().month
-        sum_month = sum(
-            order.total_price
-            for order in Order.objects.filter(
-                Q(is_completed=True) & Q(date__month=current_month)
-            )
-        )
+        sum_month_res = Order.objects.filter(
+            is_completed=True, date__month=current_month
+        ).aggregate(total=Sum(F("norm_hours") * F("category__hour_cost")))
+        sum_month = round(sum_month_res["total"], 2)
         num_orders = Order.objects.filter(is_completed=False).count()
         num_worker = Worker.objects.filter(is_active=True).count()
-        num_visits = self.request.session.get("num_visits", 0)
-        self.request.session["num_visits"] = num_visits + 1
+        num_visits = self.request.session.get("num_visits", 0) + 1
+        self.request.session["num_visits"] = num_visits
         context.update({
             "sum_all": sum_all,
             "num_orders": num_orders,
             "num_worker": num_worker,
-            "num_visits": num_visits + 1,
+            "num_visits": num_visits,
             "sum_month": sum_month,
         })
         return context
@@ -172,11 +177,8 @@ class ClientCreateView(LoginRequiredMixin, generic.CreateView):
     template_name = "crm/client_form.html"
 
     def get_success_url(self):
-
         next_page = self.request.GET.get("next")
-
         if next_page == "order":
-
             self.request.session["last_created_client_id"] = self.object.id
             return reverse_lazy("crm:order-create")
 
@@ -224,42 +226,53 @@ class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
         context = super().get_context_data(**kwargs)
         worker = self.object
         current_date = datetime.date.today()
-        completed_orders = worker.orders.filter(is_completed=True).annotate(
-            num_workers=Count("performers")
+
+        completed_orders = list(
+            worker.orders.filter(is_completed=True)
+            .select_related("category")
+            .annotate(num_workers=Count("performers"))
         )
+
         earn_all_time = 0
         earn_month = 0
         count_month = 0
         monthly_data = {}
+
         for order in completed_orders:
-            share = order.total_price / order.num_workers
+            share = (order.norm_hours * order.category.hour_cost) / order.num_workers
             earn_all_time += share
+
             month_key = order.date.strftime("%Y-%m")
             if month_key not in monthly_data:
                 monthly_data[month_key] = {"earn": 0, "count": 0}
+
             monthly_data[month_key]["earn"] += share
             monthly_data[month_key]["count"] += 1
+
             if (
-                order.date.month == current_date.month
-                and order.date.year == current_date.year
+                    order.date.month == current_date.month
+                    and order.date.year == current_date.year
             ):
                 earn_month += share
                 count_month += 1
+
         stats_by_month = [
             {
-                "date": datetime.datetime.strptime(m, "%Y-%m"),
-                "earn": round(v["earn"], 2),
-                "count": v["count"],
+                "date": datetime.datetime.strptime(month_str, "%Y-%m"),
+                "earn": round(data_dict["earn"], 2),
+                "count": data_dict["count"],
             }
-            for m, v in sorted(monthly_data.items(), reverse=True)
+            for month_str, data_dict in sorted(monthly_data.items(), reverse=True)
         ]
+
         context["earn_all_time"] = round(earn_all_time, 2)
         context["earn_month"] = round(earn_month, 2)
-        context["count_all_time"] = completed_orders.count()
+        context["count_all_time"] = len(completed_orders)
         context["count_month"] = count_month
         context["monthly_stats"] = stats_by_month
+
         total_months = (current_date.year - worker.date_joined.year) * 12 + (
-            current_date.month - worker.date_joined.month
+                current_date.month - worker.date_joined.month
         )
         context["year"] = total_months // 12
         context["month"] = total_months % 12
